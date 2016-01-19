@@ -19,7 +19,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'PortfolioController',
 	});
 	$stateProvider.state('blog', {
-		url : '/blog',
+		url : '/blog/',
 		templateUrl : 'templates/blog.html',
 		controller : 'BlogController',
 	});
