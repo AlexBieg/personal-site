@@ -53,12 +53,12 @@ app.controller("PortfolioController", function($scope, $http) {
 	});
 });
 
-app.controller("BlogController", function($scope, $http) {
+app.controller("BlogController", function($scope, $http, $sce) {
 	$http.get('blog/blog.csv').then( function(data) {
 		$scope.blogInfo = Papa.parse(data.data, {header: true}).data;
 
 		$http.get($scope.blogInfo[0].url).then(function(post) {
-			$scope.currPost = post.data;
+			$scope.currPost = $sce.trustAsHtml(post.data);
 		});
 	});
 });
