@@ -1,0 +1,28 @@
+/*
+	Alex Bieg CSE 154 fall 2014 AG hw9
+	CSS for babynames
+*/
+
+.hidden{
+	display: none;
+}
+
+body{
+	font-family: Gerorgia, serif;
+	font-size: 12pt;
+}
+
+q{
+	font-style: italic;
+}
+
+td{
+	height: 250px;
+	vertical-align: bottom;
+}
+
+td div{
+	width: 50px;
+	background-color: #FFBBBB;
+	text-align: center;
+}

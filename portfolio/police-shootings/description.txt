@@ -1,0 +1,1 @@
+This application uses leaflet.js to create a map of police shootings across the United States. It also allows for sorting by age of victim. Each point on the map is a police shooting incident. When a point is clicked on it will show a summary of the event along with a link to an article, if one exists.

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Alex Bieg</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Include libraries -->
+	<script src="https://code.jquery.com/jquery.min.js"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+	<script type="text/javascript" src="js/papaparse.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link href="style/hover.css" rel="stylesheet" media="all">
+
+	<!-- Include my files -->
+	<script type="text/javascript" src="js/script.js"></script>
+	<link rel="stylesheet" type="text/css" href="style/main.css">
+</head>
+<body ng-app="app">
+	<div id="header">
+		<h1>Alex Bieg</h1>
+		<div>
+			<h4>Follow Me</h4>
+			<ul>
+				<li>
+					<a class="hvr-buzz" href="https://twitter.com/alex_bieg"><i class="fa fa-twitter"></i></a>
+				</li>
+				<li>
+					<a class="hvr-buzz" href="https://www.linkedin.com/in/alexbieg"><i class="fa fa-linkedin"></i></a>
+				</li>
+				<li>
+					<a class="hvr-buzz" href="https://github.com/AlexBieg/"><i class="fa fa-github"></i></a>
+				</li>
+			</ul>
+		</div>
+		<div id="navbar" class="navbar navbar-default navbar-fixed">
+			<ul id="nav">
+				<li><a class="hvr-buzz-out" ui-sref="home">Home</a></li>
+				<li><a class="hvr-buzz-out" ui-sref="about">About</a></li>
+				<li><a class="hvr-buzz-out" ui-sref="portfolio">Portfolio</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="main">
+		<div class="container" ui-view></div>
+	</div>
+	<div id="footer">
+		<p>&copy 2015 - Alexander Bieg. All rights reserved.</p>
+		<p>Hosted by Arvixe</p>
+	</div>
+</body>
+</html>

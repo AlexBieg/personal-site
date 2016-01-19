@@ -1,0 +1,7 @@
+I grew up in a tiny town in Oregon called Molalla. There are about 9,000 people and three times as many cows. I never really considered technology as a career until college. Everyone who went to school there was expected to become a farmer. We had 15 agriculture electives and our only computer class was photoshop. I was never even taught how to type. In my senior year I began teaching myself java so that I could mod Minecraft. In the end I didn't accomplish to much, but I began developing a love for coding.
+::
+When I came to The University of Washington I thought that I wanted to be a physicist. As it turns out I am not good at physics. So there was a period where I was lost as to what I wanted to do. One of my roomates, who was in the computer science major convinced me to take CSE 142, the intro Computer Science class. I immediately took to it. I was always starting on my homework the first day I was able, just because it was fun. While I truly enjoyed doing Computer Science I kept feeling like something was missing.
+::
+Then I discovered Informatics. It was very similar to Computer Science, but it dealt with people much more. I realized that is what I had been missing. I wanted to write code, and I wanted to do it for people. I did not want to be someone writing code that was only ever used by machines on a server somewhere. I wanted to make something that people could see and use. 
+::
+That brings us up to date. I am still in the Informatics program and I plan to graduate in June of 2017. Thanks for reading.

@@ -1,0 +1,18 @@
+<h2>Portfolio</h2>
+<hr />
+<div ng-repeat="site in portfolio">
+	<div class="row site">
+		<div class="col-xs-12 col-sm-4">
+			<a href="{{site.url}}">
+				<img class="hvr-float-shadow" ng-src="{{site.img}}">
+			</a>
+		</div>
+		<div class="col-xs-12 col-sm-8">
+			<a href="{{site.url}}">
+				<h3 class="hvr-buzz-out">{{site.name}}</h3>
+			</a>
+			<p>{{site.description}}</p>
+		</div>
+	</div>
+	<hr />
+</div>
