@@ -58,6 +58,8 @@ app.controller("BlogController", function($scope, $http) {
 		console.log(data);
 		$scope.blogInfo = Papa.parse(data.data, {header: true}).data;
 
-		console.log($scope.blogInfo);
+		$http.get($scope.blogInfo[0].url).then(function(post) {
+			console.log(post)
+		});
 	});
 });
