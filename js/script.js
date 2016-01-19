@@ -19,7 +19,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller : 'PortfolioController',
 	});
 	$stateProvider.state('blog', {
-		url : '/blog/',
+		url : '/blog/:name',
 		templateUrl : 'templates/blog.html',
 		controller : 'BlogController',
 	});
@@ -56,6 +56,10 @@ app.controller("PortfolioController", function($scope, $http) {
 app.controller("BlogController", function($scope, $http, $sce) {
 	$http.get('blog/blog.csv').then( function(data) {
 		$scope.blogInfo = Papa.parse(data.data, {header: true}).data;
+
+		var href = $(this).attr("href");
+		var name = href.substr(href.lastIndexOf('/') + 1);
+		console.log(name);
 
 		$http.get($scope.blogInfo[0].url).then(function(post) {
 			$scope.currPost = $sce.trustAsHtml(post.data);
