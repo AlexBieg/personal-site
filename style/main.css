@@ -140,6 +140,10 @@ h2 {
 	margin-right: auto;
 }
 
+.past-blogs {
+	border-right: gray 2px solid;
+}
+
 /*
 Footer
 */
