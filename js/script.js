@@ -18,6 +18,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : 'templates/portfolio.html',
 		controller : 'PortfolioController',
 	});
+	$stateProvider.state('blog', {
+		url : '/blog',
+		templateUrl : 'templates/blog.html',
+		controller : 'BlogController',
+	})
 
 	$urlRouterProvider.when('', '/');
 });
@@ -46,4 +51,8 @@ app.controller("PortfolioController", function($scope, $http) {
 			})
 		});
 	});
+});
+
+app.controller("BlogController", function($scope, $http) {
+	
 });
