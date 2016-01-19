@@ -59,8 +59,6 @@ app.controller("BlogController", function($scope, $http) {
 			header: true
 		}).data;
 
-		$http.get($scope.blogInfo[0].url).then(function(post) {
-			$scope.currPost = post;
-		});
+		console.log($scope.blogInfo[0].url)
 	});
 });
