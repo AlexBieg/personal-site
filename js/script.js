@@ -22,7 +22,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url : '/blog',
 		templateUrl : 'templates/blog.html',
 		controller : 'BlogController',
-	})
+	});
 
 	$urlRouterProvider.when('', '/');
 });
