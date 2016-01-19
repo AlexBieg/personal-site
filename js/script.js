@@ -57,6 +57,6 @@ app.controller("BlogController", function($scope, $http) {
 	$http.get('blog/blog.csv').then( function(data) {
 		$scope.blogInfo = Papa.parse(data.data, {header: true}).data;
 
-		console.log($scope.blogInfo[0].url);
+		console.log($scope.blogInfo);
 	});
 });
