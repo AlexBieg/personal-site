@@ -57,7 +57,7 @@ app.controller("BlogController", function($scope, $http, $sce) {
 	$http.get('blog/blog.csv').then( function(data) {
 		$scope.blogInfo = Papa.parse(data.data, {header: true}).data;
 
-		var href = $(this).attr("href");
+		var href = window.location.href;
 		console.log(href);
 		var name = href.substr(href.lastIndexOf('/') + 1);
 		console.log(name);
