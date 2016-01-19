@@ -58,12 +58,15 @@ app.controller("BlogController", function($scope, $http, $sce) {
 		$scope.blogInfo = Papa.parse(data.data, {header: true}).data;
 
 		var href = window.location.href;
-		console.log(href);
 		var name = href.substr(href.lastIndexOf('/') + 1);
-		console.log(name);
-
-		$http.get($scope.blogInfo[0].url).then(function(post) {
-			$scope.currPost = $sce.trustAsHtml(post.data);
-		});
+		if(name == "") {
+			$http.get($scope.blogInfo[0].url).then(function(post) {
+				$scope.currPost = $sce.trustAsHtml(post.data);
+			});
+		} else {
+			$http.get("http://alexbieg.com/blog/" + name + ".html").then(function(post) {
+				$scope.currPost = $sce.trustAsHtml(post.data);
+			});
+		}
 	});
 });
