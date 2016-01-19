@@ -64,7 +64,7 @@ app.controller("BlogController", function($scope, $http, $sce) {
 				$scope.currPost = $sce.trustAsHtml(post.data);
 			});
 		} else {
-			$http.get("http://alexbieg.com/blog/" + name + ".html").then(function(post) {
+			$http.get("http://alexbieg.com/posts/" + name + ".html").then(function(post) {
 				$scope.currPost = $sce.trustAsHtml(post.data);
 			});
 		}
