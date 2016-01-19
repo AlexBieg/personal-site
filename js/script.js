@@ -55,11 +55,10 @@ app.controller("PortfolioController", function($scope, $http) {
 
 app.controller("BlogController", function($scope, $http) {
 	$http.get('blog/blog.csv').then( function(data) {
-		console.log(data);
 		$scope.blogInfo = Papa.parse(data.data, {header: true}).data;
 
 		$http.get($scope.blogInfo[0].url).then(function(post) {
-			console.log(post)
+			$scope.currPost = post.data;
 		});
 	});
 });
