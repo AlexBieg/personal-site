@@ -1,3 +1,4 @@
 <?php 
-	ini_set('display_errors', 1);
+	$posts = glob("/*.html");
+	echo print_r($posts);
  ?>
