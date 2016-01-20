@@ -1,7 +1,9 @@
 <h2>Blog</h2>
 <div class="col-xs-12 col-md-2 past-blogs">
+	<p>Recent Posts</p>
+	<input ng-model="search" type="text" placeholder="Search Posts" class="form-control">
 	<ul>
-		<li ng-repeat="post in blogInfo">
+		<li ng-repeat="post in blogInfo | filter:search">
 			<a href="{{getUrl(post.title)}}">
 				<p>{{formatTitle(post.title)}}</p>
 				<p>{{post.date}}</p>

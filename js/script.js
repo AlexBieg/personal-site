@@ -56,7 +56,6 @@ app.controller("PortfolioController", function($scope, $http) {
 app.controller("BlogController", function($scope, $http, $sce) {
 	$http.get('posts/get-posts.php').then( function(data) {
 		$scope.blogInfo = data.data;
-		console.log(data.data);
 
 		var href = window.location.href;
 		var name = href.substr(href.lastIndexOf('/') + 1);
