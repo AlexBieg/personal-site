@@ -44,6 +44,8 @@ app.controller("PortfolioController", function($scope, $http) {
 		$scope.portfolio = Papa.parse(data.data, {
 			header: true
 		}).data;
+		
+		console.log($scope.portfolio);
 
 		$scope.portfolio.forEach(function(d) {
 			$http.get(d.description).then(function(response) {
