@@ -55,15 +55,18 @@ app.controller("PortfolioController", function($scope, $http) {
 
 app.controller("BlogController", function($scope, $http, $sce) {
 	$http.get('posts/get-posts.php').then( function(data) {
-		$scope.blogInfo = data;
-		console.log(data);
+		$scope.blogInfo = data.data;
 
 		var href = window.location.href;
 		var name = href.substr(href.lastIndexOf('/') + 1);
 		if(name == "") {
-			$scope.currPost = null;
+			$scope.currPost = blogInfo[0];
 		} else {
-			$scope.currPost = null;
+			$scope.blogInfo.forEach(function(post) {
+				if (name + ".html" == post.title) {
+					$scope.currPost = post;
+				}
+			})
 		}
 	});
 });
