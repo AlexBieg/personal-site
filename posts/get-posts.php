@@ -1,4 +1,4 @@
 <?php 
-	$posts = glob("/*.html");
+	$posts = glob("*.html");
 	echo print_r($posts);
  ?>
