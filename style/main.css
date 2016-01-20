@@ -191,7 +191,7 @@ Media Queries
 
 @media only screen and (min-width: 992px) {
 	#header {
-		min-height: 500px;
+		min-height: 400px;
 	}
 
 	h1 {
