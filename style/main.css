@@ -30,7 +30,7 @@ hr {
 }
 
 .fa{
-	font-size: 70px;
+	font-size: 40px;
 	color: rgb(186, 81, 0);
 	text-shadow: 10px 10px rgba(10, 10, 10, .6);
 }
@@ -140,10 +140,6 @@ h2 {
 	margin-right: auto;
 }
 
-.past-blogs {
-	border-right: gray 2px solid;
-}
-
 /*
 Footer
 */
@@ -206,5 +202,13 @@ Media Queries
 		width: 500px;
 		height: 500px;
 		border-radius: 250px;
+	}
+
+	.past-blogs {
+		border-left: gray 2px solid;
+	}
+
+	.fa {
+		font-size: 70px;
 	}
 }
