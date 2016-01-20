@@ -1,4 +1,9 @@
 <?php 
 	$posts = glob("*.html");
-	print_r($posts);
+	$json = [];
+	foreach ($posts as $post) {
+		$file = ["title" => $post, "content" => file_get_contents($post), "data" => date ("F d Y", filemtime($post)]
+		array_push($json, $file);
+	}
+	echo json_encode($json);
  ?>
