@@ -60,7 +60,7 @@ app.controller("BlogController", function($scope, $http, $sce) {
 		var href = window.location.href;
 		var name = href.substr(href.lastIndexOf('/') + 1);
 		if(name == "") {
-			$scope.currPost = blogInfo[0];
+			$scope.currPost = $scope.blogInfo[0];
 		} else {
 			$scope.blogInfo.forEach(function(post) {
 				if (name + ".html" == post.title) {
