@@ -60,11 +60,11 @@ app.controller("BlogController", function($scope, $http, $sce) {
 		var href = window.location.href;
 		var name = href.substr(href.lastIndexOf('/') + 1);
 		if(name == "") {
-			$scope.currPost = $sce.trustAsHtml($scope.blogInfo[0]);
+			$scope.currPost = $sce.trustAsHtml($scope.blogInfo[0].content);
 		} else {
 			$scope.blogInfo.forEach(function(post) {
 				if (name + ".html" == post.title) {
-					$scope.currPost = $sce.trustAsHtml(post);
+					$scope.currPost = $sce.trustAsHtml(post.content);
 				}
 			})
 		}
