@@ -3,7 +3,7 @@
 	$posts = glob("*.html");
 	$json = [];
 	foreach ($posts as $post) {
-		$file = ["title" => $post, "content" => file_get_contents($post), "data" => filemtime($post)];
+		$file = ["title" => $post, "content" => file_get_contents($post), "date" => date("m/d/y", filemtime($post))];
 		array_push($json, $file);
 	}
 	echo json_encode($json);
