@@ -2,7 +2,7 @@
 <div class="col-xs-12 col-md-2 past-blogs">
 	<ul>
 		<li ng-repeat="post in blogInfo">
-			<a href="{{getBaseUrl() + post.title}}">
+			<a href="{{getUrl(post.title)}}">
 				<p>{{formatTitle(post.title)}}</p>
 				<p>{{post.date}}</p>
 			</a>	
