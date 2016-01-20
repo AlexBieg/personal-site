@@ -76,4 +76,10 @@ app.controller("BlogController", function($scope, $http, $sce) {
 		title = title.replace("-", " ");
 		return title.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 	}
+
+	$scope.getBaseUrl = function() {
+		var url = window.location.href;
+		var str = url.substr(url.lastIndexOf('/') + 1) + '$';
+    	return url.replace( new RegExp(str), '' );
+	}
 });
