@@ -56,6 +56,7 @@ app.controller("PortfolioController", function($scope, $http) {
 app.controller("BlogController", function($scope, $http, $sce) {
 	$http.get('posts/get-posts.php').then( function(data) {
 		$scope.blogInfo = data.data;
+		console.log(data.data);
 
 		var href = window.location.href;
 		var name = href.substr(href.lastIndexOf('/') + 1);
@@ -69,4 +70,10 @@ app.controller("BlogController", function($scope, $http, $sce) {
 			})
 		}
 	});
+
+	$scope.formatTitle = function(title) {
+		title = title.slice(0, -5);
+		title = title.replace("-", " ");
+		return title.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+	}
 });
