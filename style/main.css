@@ -93,6 +93,10 @@ h1 {
     margin: 0px;
 }
 
+.active {
+	color: rgb(186, 81, 0);
+}
+
 /*
 main content area
 */
