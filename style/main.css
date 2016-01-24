@@ -152,6 +152,11 @@ h2 {
 	font-size: 30px;
 }
 
+.post-content video,
+.post-content img {
+	max-width: 100%;
+}
+
 /*
 Footer
 */
