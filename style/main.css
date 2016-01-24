@@ -62,16 +62,17 @@ ul {
 
 ul li {
 	display: inline;
-	margin: 20px;
 	font-size: 20px;
 }
 
-#nav a {
+#nav a,
+.navbar>li>a {
 	color: white;
 	text-decoration: none;
 }
 
-#nav a:hover {
+#nav a:hover,
+.navbar>li>a:hover {
 	color: rgb(186, 81, 0);
 }
 
