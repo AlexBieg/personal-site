@@ -4,7 +4,7 @@
 	<h3>Recent Posts</h3>
 	<input ng-model="search" type="text" placeholder="Search Posts" class="form-control">
 	<ul>
-		<li class="animate-repeat" ng-repeat="post in blogInfo | filter:search">
+		<li class="animate-repeat" ng-repeat="post in blogInfo | filter:search | limitTo:1">
 			<a href="{{getUrl(post.title)}}">
 				<p>{{formatTitle(post.title)}}</p>
 				<p>{{post.date}}</p>
