@@ -69,15 +69,13 @@ ul li {
 }
 
 #nav a,
-.navbar>li>a,
-#nav-list li a {
+.navbar-default .navbar-nav>li>a {
 	color: white;
 	text-decoration: none;
 }
 
 #nav a:hover,
-.navbar>li>a:hover,
-#nav-list li a:hover {
+.navbar-default .navbar-nav>li>a:hover{
 	color: rgb(186, 81, 0);
 }
 
