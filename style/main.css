@@ -64,7 +64,6 @@ ul {
 
 ul li {
 	display: inline;
-	margin: 20px;
 	font-size: 20px;
 }
 
@@ -97,7 +96,7 @@ h1 {
     margin: 0px;
 }
 
-.active {
+.navbar-default .navbar-nav>li>a.active {
 	color: rgb(186, 81, 0);
 }
 
