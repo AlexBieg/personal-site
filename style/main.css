@@ -47,7 +47,6 @@ Header area
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    min-height: 250px;
     position: relative;
 }
 
@@ -213,10 +212,6 @@ Media Queries
 */
 
 @media only screen and (min-width: 992px) {
-	#header {
-		min-height: 400px;
-	}
-
 	h1 {
 		font-size: 150px;
 	}
