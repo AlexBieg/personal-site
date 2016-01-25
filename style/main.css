@@ -162,6 +162,14 @@ h2 {
 	margin-bottom: 20px;
 }
 
+.past-blogs p:first-child {
+	margin-bottom: 0px;
+}
+
+.past-blogs p:nth-child(2) {
+	margin-bottom: 20px;
+}
+
 /*
 Footer
 */
