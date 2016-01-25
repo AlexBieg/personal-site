@@ -42,7 +42,7 @@ Header area
 */
 #header {
 	color: white;
-	background: url('../img/binary.png') no-repeat center center fixed;
+	background: url('../img/stars.png') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
