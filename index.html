@@ -37,14 +37,29 @@
 				</li>
 			</ul>
 		</div>
-		<div id="navbar" class="navbar navbar-default navbar-fixed">
-			<ul id="nav">
-				<li><a class="hvr-buzz-out" ui-sref="home">Home</a></li>
-				<li><a class="hvr-buzz-out" ui-sref="about">About</a></li>
-				<li><a class="hvr-buzz-out" ui-sref="portfolio">Portfolio</a></li>
-				<li><a class="hvr-buzz-out" ui-sref="blog">Blog</a></li>
-			</ul>
-		</div>
+		<nav id="navbar" class="navbar navbar-default">
+			<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul id="nav-list" class="nav navbar-nav">
+						<li><a class="hvr-bounce-out" ui-sref="home" ui-sref-active="active">Home</a></li>
+						<li><a class="hvr-bounce-out" ui-sref="about" ui-sref-active="active">About</a></li>
+						<li><a class="hvr-bounce-out" ui-sref="portfolio" ui-sref-active="active">Portfolio</a></li>
+						<li><a class="hvr-bounce-out" ui-sref="blog" ui-sref-active="active">Blog</a></li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+		  	</div><!-- /.container-fluid -->
+		</nav>
 	</div>
 	<div id="main">
 		<div class="container" ui-view></div>
