@@ -42,8 +42,8 @@ function initialize(n) {
 			r : Math.floor(Math.random() * 4),
 			x : Math.random() * canvas.width(),
 			y : Math.random() * canvas.height(),
-			vx : (Math.random() - 0.5) / 2.5,
-			vy : -(Math.abs(Math.random() / 2.5))
+			vx : (Math.random() - 0.5) / 5,
+			vy : -(Math.abs(Math.random() / 5))
 		});
 	}
 }
@@ -59,5 +59,5 @@ $(function() {
 	$(window).resize(resizeCanvas);
 	resizeCanvas();
 	initialize($(window).width() / 15);
-	setInterval(update, 80)
+	setInterval(update, 40)
 });
