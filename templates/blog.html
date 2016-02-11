@@ -7,7 +7,6 @@
 		<li class="animate-repeat" ng-repeat="post in blogInfo | filter:search | limitTo:10">
 			<a href="{{getUrl(post.title)}}">
 				<p>{{formatTitle(post.title)}}</p>
-				<p>{{post.date}}</p>
 			</a>	
 		</li>
 	</ul>
