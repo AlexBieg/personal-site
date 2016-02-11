@@ -31,7 +31,7 @@ hr {
 
 .fa{
 	font-size: 40px;
-	color: #6a2010;
+	color: #de5a20;
 	text-shadow: 10px 10px rgba(10, 10, 10, .6);
 	margin-left: 10px;
     margin-right: 10px;
@@ -87,7 +87,7 @@ ul li {
 
 #nav a:hover,
 .navbar-default .navbar-nav>li>a:hover{
-	color: #6a2010;
+	color: #de5a20;
 }
 
 h1 {
@@ -108,7 +108,7 @@ h1 {
 }
 
 .navbar-default .navbar-nav>li>a.active {
-	color: rgb(186, 81, 0);
+	color: #de5a20;
 }
 
 /*
@@ -141,7 +141,7 @@ img {
 }
 
 #main a:hover {
-	color: rgb(186, 81, 0);
+	color: #de5a20;
 }
 
 h2 {
