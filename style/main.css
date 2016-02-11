@@ -31,7 +31,7 @@ hr {
 
 .fa{
 	font-size: 40px;
-	color: rgb(186, 81, 0);
+	color: #eed552;
 	text-shadow: 10px 10px rgba(10, 10, 10, .6);
 	margin-left: 10px;
     margin-right: 10px;
@@ -44,12 +44,12 @@ Header area
 canvas {
 	position: fixed;
 	z-index: -1;
-	background:#061013;
-	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#061013), to(#2F3335));
-	background-image:  -webkit-linear-gradient(top, #061013, #1E2122);
-	background-image: -moz-linear-gradient(top, #061013, #1E2122);
-	background-image: -ms-linear-gradient(top, #061013, #1E2122);
-	background-image: -o-linear-gradient(top, #061013, #1E2122);
+	background:#29314a;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#414152), to(#29314a));
+	background-image:  -webkit-linear-gradient(top, #414152, #29314a);
+	background-image: -moz-linear-gradient(top, #414152, #29314a);
+	background-image: -ms-linear-gradient(top, #414152, #29314a);
+	background-image: -o-linear-gradient(top, #414152, #29314a);
 }
 
 
@@ -87,7 +87,7 @@ ul li {
 
 #nav a:hover,
 .navbar-default .navbar-nav>li>a:hover{
-	color: rgb(186, 81, 0);
+	color: #eed552;
 }
 
 h1 {
