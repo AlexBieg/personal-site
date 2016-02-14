@@ -60,9 +60,19 @@ app.controller("BlogController", function($scope, $http, $sce) {
 		$scope.blogInfo = data.data;
 
 		var href = window.location.href;
-		var name = href.substr(href.lastIndexOf('/') + 1);
-		if(name == "") {
-			$scope.currPost = $sce.trustAsHtml($scope.blogInfo[0].content);
+		var name = href.substr(href.lastIndexOf('/') + 1);
+
+		if(name == "") {
+			var newest = blogInfo[0];
+			var newestDate = new Date(newest.date);
+			for (var i = 1; i < $scope.blogInfo; i++) {
+				anotherDate = new Date(blogInfo[i].date);
+				if (newestDate < anotherDate) {
+					var newest = blogInfo[i];
+					var newestDate = new Date(newest.date);
+				}
+			}
+			$scope.currPost = $sce.trustAsHtml(newest.content);
 		} else {
 			$scope.blogInfo.forEach(function(post) {
 				if (name + ".html" == post.title) {
