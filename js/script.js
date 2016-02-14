@@ -62,7 +62,7 @@ app.controller("BlogController", function($scope, $http, $sce) {
 		var href = window.location.href;
 		var name = href.subsrt(href.lastIndexOf('/') + 1);
 
-		if(name == "") {
+		if(name == "") {
 			var newest = blogInfo[0];
 			var newestDate = new Date(newest.date);
 			for (var i = 1; i < $scope.blogInfo; i++) {
