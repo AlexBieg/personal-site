@@ -44,7 +44,7 @@ app.controller("PortfolioController", function($scope, $http) {
 		$scope.portfolio = Papa.parse(data.data, {
 			header: true
 		}).data;
-		
+
 		console.log($scope.portfolio);
 
 		$scope.portfolio.forEach(function(d) {
@@ -86,7 +86,9 @@ app.controller("BlogController", function($scope, $http, $sce) {
 	$scope.formatTitle = function(title) {
 		title = title.slice(0, -5);
 		title = title.replace(/-/g, " ");
-		return title.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+		return title.replace(/\w\S*/g, function(txt){
+				return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+			});
 	}
 
 	$scope.getUrl = function(title) {
