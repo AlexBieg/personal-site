@@ -58,19 +58,18 @@ app.controller("PortfolioController", function($scope, $http) {
 app.controller("BlogController", function($scope, $http, $sce) {
 	$http.get('posts/get-posts.php').then( function(data) {
 		$scope.blogInfo = data.data;
-		//for (var i = 0; i < $scope.blogInfo.length)
+		for (var i = 0; i < $scope.blogInfo.length) {
+			$scope.blogInfo[i].orderDate = new Date($scope.blogInfo[i].date);
+		}
 
 		var href = window.location.href;
 		var name = href.substr(href.lastIndexOf('/') + 1);
 
 		if(name == "") {
 			var newest = $scope.blogInfo[0];
-			var newestDate = new Date(newest.date);
 			for (var i = 1; i < $scope.blogInfo.length; i++) {
-				anotherDate = new Date($scope.blogInfo[i].date);
-				if (newestDate < anotherDate) {
+				if (newest.orderDate < $scope.blogInfo[i].orderDate) {
 					var newest = $scope.blogInfo[i];
-					var newestDate = new Date(newest.date);
 				}
 			}
 			$scope.currPost = $sce.trustAsHtml(newest.content);
