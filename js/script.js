@@ -63,12 +63,12 @@ app.controller("BlogController", function($scope, $http, $sce) {
 		var name = href.substr(href.lastIndexOf('/') + 1);
 
 		if(name == "") {
-			var newest = blogInfo[0];
+			var newest = $scope.blogInfo[0];
 			var newestDate = new Date(newest.date);
 			for (var i = 1; i < $scope.blogInfo; i++) {
-				anotherDate = new Date(blogInfo[i].date);
+				anotherDate = new Date($scope.blogInfo[i].date);
 				if (newestDate < anotherDate) {
-					var newest = blogInfo[i];
+					var newest = $scope.blogInfo[i];
 					var newestDate = new Date(newest.date);
 				}
 			}
