@@ -58,7 +58,7 @@ app.controller("PortfolioController", function($scope, $http) {
 app.controller("BlogController", function($scope, $http, $sce) {
 	$http.get('posts/get-posts.php').then( function(data) {
 		$scope.blogInfo = data.data;
-		for (var i = 0; i < $scope.blogInfo.length) {
+		for (var i = 0; i < $scope.blogInfo.length; i++) {
 			$scope.blogInfo[i].orderDate = new Date($scope.blogInfo[i].date);
 		}
 
