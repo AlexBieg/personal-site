@@ -61,6 +61,7 @@ app.controller("BlogController", function($scope, $http, $sce) {
 		for (var i = 0; i < $scope.blogInfo.length; i++) {
 			$scope.blogInfo[i].orderDate = new Date($scope.blogInfo[i].date);
 		}
+		console.log($scope.blogInfo);
 
 		var href = window.location.href;
 		var name = href.substr(href.lastIndexOf('/') + 1);
