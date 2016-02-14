@@ -58,6 +58,7 @@ app.controller("PortfolioController", function($scope, $http) {
 app.controller("BlogController", function($scope, $http, $sce) {
 	$http.get('posts/get-posts.php').then( function(data) {
 		$scope.blogInfo = data.data;
+		//for (var i = 0; i < $scope.blogInfo.length)
 
 		var href = window.location.href;
 		var name = href.substr(href.lastIndexOf('/') + 1);
@@ -65,7 +66,7 @@ app.controller("BlogController", function($scope, $http, $sce) {
 		if(name == "") {
 			var newest = $scope.blogInfo[0];
 			var newestDate = new Date(newest.date);
-			for (var i = 1; i < $scope.blogInfo; i++) {
+			for (var i = 1; i < $scope.blogInfo.length; i++) {
 				anotherDate = new Date($scope.blogInfo[i].date);
 				if (newestDate < anotherDate) {
 					var newest = $scope.blogInfo[i];
