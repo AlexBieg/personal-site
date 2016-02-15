@@ -19,6 +19,7 @@ h4 {
 
 body{
 	font-family: Lato, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 18px;
 }
 
 body a {
@@ -159,7 +160,6 @@ h2 {
 }
 
 .post-content p {
-	font-size: 20px;
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
