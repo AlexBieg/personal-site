@@ -53,7 +53,7 @@ function createPlaceholder(img, width, height) {
 
 $(function() {
 	var $imgs = $(".pil-load");
-	console.log("loaded pil");
+	console.log($imgs);
 	$imgs.each(function() {
 		$img = $(this);
 		if (!$img[0].complete) {
