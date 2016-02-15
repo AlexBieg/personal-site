@@ -60,17 +60,15 @@ app.controller("BlogController", function($scope, $http, $sce) {
 			$scope.blogInfo[i].orderDate = new Date($scope.blogInfo[i].date);
 		}
 
+		$scope.sortedBlog = $scope.blogInfo.sort(function (a, b) {
+			return b.orderDate - a.orderDate;
+		});
+
 		var href = window.location.href;
 		var name = href.substr(href.lastIndexOf('/') + 1);
 
 		if(name == "") {
-			var newest = $scope.blogInfo[0];
-			for (var i = 1; i < $scope.blogInfo.length; i++) {
-				if (newest.orderDate < $scope.blogInfo[i].orderDate) {
-					var newest = $scope.blogInfo[i];
-				}
-			}
-			$scope.currPost = $sce.trustAsHtml(newest.content);
+			$scope.currPost = $sce.trustAsHtml($scope.sortedBlog[0]);
 		} else {
 			$scope.blogInfo.forEach(function(post) {
 				if (name + ".html" == post.title) {
