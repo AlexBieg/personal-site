@@ -6,6 +6,25 @@ Imports
 
 
 /*
+pil.js
+*/
+.pil-placeholder {
+	animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+	0% {
+	background-color: #f8f8f8;
+	}
+	50% {
+	background-color: #c4c4c4;
+	}
+	100% {
+	background-color: #f8f8f8;
+	}
+}
+
+/*
 General tags
 */
 h1, h2, h3, h4 {
