@@ -70,7 +70,7 @@ app.controller("BlogController", function($scope, $http, $sce) {
 		var name = href.substr(href.lastIndexOf('/') + 1);
 
 		if(name == "") {
-			$scope.currPost = $sce.trustAsHtml($scope.sortedBlog[0].content);
+			$scope.currPost = $sce.trustAsHtml($scope.sortedBlog[0]);
 		} else {
 			$scope.blogInfo.forEach(function(post) {
 				if (name + ".html" == post.title) {
