@@ -64,6 +64,8 @@ app.controller("BlogController", function($scope, $http, $sce) {
 			return b.orderDate - a.orderDate;
 		});
 
+		console.log($scope.sortedBlog)
+
 		var href = window.location.href;
 		var name = href.substr(href.lastIndexOf('/') + 1);
 
