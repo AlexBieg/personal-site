@@ -64,7 +64,6 @@ app.controller("BlogController", function($scope, $http, $sce) {
 			return b.orderDate - a.orderDate;
 		});
 		$scope.currPost = $scope.sortedBlog[0];
-		console.log($scope.currPost);
 
 		var href = window.location.href;
 		var name = href.substr(href.lastIndexOf('/') + 1);
@@ -82,7 +81,6 @@ app.controller("BlogController", function($scope, $http, $sce) {
 
 	$scope.formatTitle = function(title) {
 		if (title) {
-			console.log(title);
 			title = title.slice(0, -5);
 			title = title.replace(/-/g, " ");
 			return title.replace(/\w\S*/g, function(txt){
