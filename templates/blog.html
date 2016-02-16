@@ -12,7 +12,7 @@
 	<h3>Recent Posts</h3>
 	<input ng-model="search" type="text" placeholder="Search Posts" class="form-control">
 	<ul>
-		<li class="animate-repeat" ng-repeat="post in blogInfo | filter:search | orderBy:'-date'">
+		<li class="animate-repeat" ng-repeat="post in sortedBlog | filter:search | orderBy:'-date'">
 			<a href="{{getUrl(post.title)}}">
 				<p>{{formatTitle(post.title)}}</p>
 			</a>
