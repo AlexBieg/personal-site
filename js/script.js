@@ -81,6 +81,7 @@ app.controller("BlogController", function($scope, $http, $sce) {
 	});
 
 	$scope.formatTitle = function(title) {
+		console.log(title);
 		title = title.slice(0, -5);
 		title = title.replace(/-/g, " ");
 		return title.replace(/\w\S*/g, function(txt){
