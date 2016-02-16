@@ -63,14 +63,12 @@ app.controller("BlogController", function($scope, $http, $sce) {
 		$scope.sortedBlog = $scope.blogInfo.sort(function (a, b) {
 			return b.orderDate - a.orderDate;
 		});
-
-		console.log($scope.sortedBlog)
+		$scope.currPost = $scope.sortedBlog[0];
+		console.log($scope.currPost);
 
 		var href = window.location.href;
 		var name = href.substr(href.lastIndexOf('/') + 1);
 
-		console.log(sortedBlog);
-		$scope.currPost = $scope.sortedBlog[0];
 		if(name == "") {
 			$scope.displayPostContent = $sce.trustAsHtml($scope.sortedBlog[0].content);
 		} else {
