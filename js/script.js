@@ -81,18 +81,26 @@ app.controller("BlogController", function($scope, $http, $sce) {
 	});
 
 	$scope.formatTitle = function(title) {
-		console.log(title);
-		title = title.slice(0, -5);
-		title = title.replace(/-/g, " ");
-		return title.replace(/\w\S*/g, function(txt){
-				return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+		if (title) {
+			console.log(title);
+			title = title.slice(0, -5);
+			title = title.replace(/-/g, " ");
+			return title.replace(/\w\S*/g, function(txt){
+					return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
 			});
+		} else {
+			return null;
+		}
 	}
 
 	$scope.getUrl = function(title) {
-		title = title.slice(0, -5);
-		var url = window.location.href;
-		var str = url.substr(url.lastIndexOf('/') + 1) + '$';
-    	return url.replace( new RegExp(str), '' ) + title;
+		if (title) {
+			title = title.slice(0, -5);
+			var url = window.location.href;
+			var str = url.substr(url.lastIndexOf('/') + 1) + '$';
+			return url.replace( new RegExp(str), '' ) + title;
+		} else {
+			return null;
+		}
 	}
 });
