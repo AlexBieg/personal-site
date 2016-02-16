@@ -76,9 +76,7 @@ app.controller("BlogController", function($scope, $http, $sce) {
 			$scope.blogInfo.forEach(function(post) {
 				if (name + ".html" == post.title) {
 					$scope.displayPostContent = $sce.trustAsHtml(post.content);
-				} else {
-					$scope.displayPostContent = $sce.trustAsHtml("<h3>Sorry that blog was not found</h3>");
-				}
+				} 
 			})
 		}
 	});
