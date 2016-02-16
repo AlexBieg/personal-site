@@ -69,6 +69,7 @@ app.controller("BlogController", function($scope, $http, $sce) {
 		var href = window.location.href;
 		var name = href.substr(href.lastIndexOf('/') + 1);
 
+		console.log(sortedBlog);
 		$scope.currPost = $scope.sortedBlog[0];
 		if(name == "") {
 			$scope.displayPostContent = $sce.trustAsHtml($scope.sortedBlog[0].content);
@@ -76,7 +77,7 @@ app.controller("BlogController", function($scope, $http, $sce) {
 			$scope.blogInfo.forEach(function(post) {
 				if (name + ".html" == post.title) {
 					$scope.displayPostContent = $sce.trustAsHtml(post.content);
-				} 
+				}
 			})
 		}
 	});
