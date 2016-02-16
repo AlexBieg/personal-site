@@ -69,12 +69,15 @@ app.controller("BlogController", function($scope, $http, $sce) {
 		var href = window.location.href;
 		var name = href.substr(href.lastIndexOf('/') + 1);
 
+		$scope.currPost = $scope.sortedBlog[0];
 		if(name == "") {
-			$scope.currPostContent = $sce.trustAsHtml($scope.sortedBlog[0].content);
+			$scope.displayPostContent = $sce.trustAsHtml($scope.sortedBlog[0].content);
 		} else {
 			$scope.blogInfo.forEach(function(post) {
 				if (name + ".html" == post.title) {
-					$scope.currPost = $sce.trustAsHtml(post.content);
+					$scope.displayPostContent = $sce.trustAsHtml(post.content);
+				} else {
+					$scope.displayPostContent = $sce.trustAsHtml("<h3>Sorry that blog was not found</h3>");
 				}
 			})
 		}
