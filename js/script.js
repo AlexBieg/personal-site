@@ -1,4 +1,11 @@
-var app = angular.module("app", ["ui.router"]);
+var app = angular.module("app", ["ui.router"])
+.directive("handleImgsDirective", function () {
+	return function(scope, element, attr) {
+		if (scope.$last) {
+			handleImgs();
+		}
+	}
+});
 
 app.config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider.state('home', {
@@ -50,7 +57,6 @@ app.controller("PortfolioController", function($scope, $http) {
 				d.description = response.data;
 			})
 		});
-		handleImgs();
 	});
 });
 
