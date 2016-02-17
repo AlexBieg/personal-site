@@ -50,6 +50,7 @@ app.controller("PortfolioController", function($scope, $http) {
 				d.description = response.data;
 			})
 		});
+		handleImgs();
 	});
 });
 
