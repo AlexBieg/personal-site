@@ -1,13 +1,4 @@
-var app = angular.module("app", ["ui.router"])
-.directive("handleImgsDirective", function ($timeout) {
-	return function(scope, element, attr) {
-		if (scope.$last) {
-			$timeout(function() {
-				handleImgs();
-			})
-		}
-	}
-});
+var app = angular.module("app", ["ui.router"]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider.state('home', {
@@ -34,13 +25,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	});
 
 	$urlRouterProvider.when('', '/');
-})
-.run(function($rootScope) {
-	$rootScope
-        .$on('$viewContentLoaded',
-            function(event, viewConfig){
-                handleImgs();
-        });
 });
 
 app.controller("HomeController", function($scope, $http) {
