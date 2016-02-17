@@ -1,8 +1,10 @@
 var app = angular.module("app", ["ui.router"])
-.directive("handleImgsDirective", function () {
+.directive("handleImgsDirective", function ($timeout) {
 	return function(scope, element, attr) {
 		if (scope.$last) {
-			handleImgs();
+			$timeout(function() {
+				handleImgs();
+			})
 		}
 	}
 });
