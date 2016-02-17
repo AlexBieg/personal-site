@@ -32,6 +32,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	});
 
 	$urlRouterProvider.when('', '/');
+})
+.run(function($rootScope) {
+	$rootScope
+        .$on('$viewContentLoaded',
+            function(event, viewConfig){
+                handleImgs();
+        });
 });
 
 app.controller("HomeController", function($scope, $http) {
