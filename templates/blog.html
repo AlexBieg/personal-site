@@ -18,7 +18,7 @@
 		</p>
 	</div>
 	<ul>
-		<li class="animate-repeat" ng-repeat="post in filtered = (sortedBlog | filter:search | orderBy:'-date' | limitTo:(showAll ? 1000 : 10)">
+		<li class="animate-repeat" ng-repeat="post in filtered = (sortedBlog | filter:search | orderBy:'-date' | limitTo:(showAll ? 1000 : 10))">
 			<a href="{{getUrl(post.title)}}">
 				<p>{{formatTitle(post.title)}}</p>
 			</a>
