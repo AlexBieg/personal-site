@@ -179,8 +179,11 @@ h2 {
 }
 
 .filter-posts {
-	background-color: #e3e3e3;
-	border-radius: 5px;
+	font-weight: bold;
+}
+
+.filter-posts p {
+	margin: 0px;
 }
 
 .post-content p {
