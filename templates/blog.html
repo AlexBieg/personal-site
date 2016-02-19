@@ -14,7 +14,7 @@
 	<div class="show-all">
 		<p>Show all posts: <input type="checkbox" name="all" ng-model="showAll"></p>
 		<p>
-			Currently Showing {{showAll ? sortedBlog.length : math.Min(10, sortedBlog.length)}}
+			Currently Showing {{showAll ? sortedBlog.length : Math.min(10, sortedBlog.length)}}
 		</p>
 	</div>
 	<ul>
