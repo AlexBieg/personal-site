@@ -11,9 +11,14 @@
 	</ul>
 	<h3>Recent Posts</h3>
 	<input ng-model="search" type="text" placeholder="Search Posts" class="form-control">
-	<input type="checkbox" name="all" ng-model="showAll">
+	<div class="show-all">
+		<p>Show all posts: <input type="checkbox" name="all" ng-model="showAll"></p>
+		<p>
+			Currently Showing {{showAll ? sortedBlog.length : math.Min(10, sortedBlog.length)}}
+		</p>
+	</div>
 	<ul>
-		<li class="animate-repeat" ng-repeat="post in sortedBlog | filter:search | orderBy:'-date' | limitTo:(showAll ? 1000 : 3)">
+		<li class="animate-repeat" ng-repeat="post in sortedBlog | filter:search | orderBy:'-date' | limitTo:(showAll ? 1000 : 10)">
 			<a href="{{getUrl(post.title)}}">
 				<p>{{formatTitle(post.title)}}</p>
 			</a>
