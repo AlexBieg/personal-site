@@ -207,6 +207,12 @@ h2 {
 	margin-bottom: 20px;
 }
 
+quote {
+	background-color: #efefef;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
 /*
 Footer
 */
