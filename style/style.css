@@ -70,8 +70,9 @@ p {
     margin-bottom: 15px;
 }
 
-.social-buttons {
+.social-buttons ul{
     list-style: none;
+    padding: 0px;
 }
 
 .social-buttons li {
@@ -84,7 +85,8 @@ p {
     font-size: 80px;
 }
 
-.email {
+.email,
+.resume {
     font-size: 50px;
 }
 

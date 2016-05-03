@@ -26,7 +26,8 @@ $(function(){
 		pointerStart = isTouch ? 'touchstart' : 'mousedown',
 		pointerEnd = isTouch ? 'touchend' : 'mouseup',
 		pointerMove = isTouch ? 'touchmove' : 'mousemove',
-		faceCounter = 0;
+		faceCounter = 0,
+		startCubeRotation = cubeRotation;
 
 	function setFaceTransforms() {
 		radius = Math.floor(($win.height() / 2) / Math.tan(Math.PI / facesLength));
@@ -145,6 +146,7 @@ $(function(){
 
 	function setupDraghandler(e) {
 		if (canScroll && e.target.id != 'up' && e.target.id != 'down') {
+			startCubeRotation = cubeRotation;
             clientY = getClientY(e);
             $win.bind(pointerMove, $.throttle(10, dragHandler));
         } else if (!canScroll) {
@@ -155,7 +157,9 @@ $(function(){
 	function destroyDraghandler(e) {
 		if (canScroll && e.target.id != 'up' && e.target.id != 'down') {
             $win.unbind(pointerMove, dragHandler);
-            rotateToFace();
+			if (startCubeRotation != cubeRotation) {
+				rotateToFace();
+			}
             scrollDirection = null;
         } else if (!canScroll) {
 			e.preventDefault();
