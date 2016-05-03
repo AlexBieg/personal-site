@@ -1,0 +1,185 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,300);
+@import url(https://fonts.googleapis.com/css?family=Josefin+Slab:400,300,700);
+
+html, body, #container, #cube {
+    height: 100%;
+    width: 100%;
+    font-family: "Roboto Slab";
+}
+
+html, body {
+    -webkit-overflow-scrolling: touch;
+}
+
+body {
+    background-color: #000;
+    margin: 0; padding: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none; user-select: none;
+}
+
+h1 {
+    font-family: "Josefin Slab";
+    font-size: 150px;
+    font-weight: 300;
+}
+
+h2 {
+    font-family: "Josefin Slab";
+    font-size: 80px;
+    font-weight: 300;
+}
+
+p {
+    font-size: 30px;
+    max-width: 1600px;
+    font-weight: 300;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.one {
+    background-image: url("../img/land-one.jpg");
+}
+
+.two {
+    background-image: url("../img/land-three.jpg");
+}
+
+.two .face-content {
+    background-color: rgba(100, 100, 100, 0.4);
+    height: 100%;
+}
+
+.three {
+    background-image: url("../img/land-two.jpg");
+}
+
+.four {
+    background-image: url("../img/land-four.jpg");
+}
+
+.port-item img {
+    max-width: 300px;
+}
+
+.port-item p {
+    margin-bottom: 15px;
+}
+
+.social-buttons {
+    list-style: none;
+}
+
+.social-buttons li {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.social-buttons i {
+    font-size: 80px;
+}
+
+.email {
+    font-size: 50px;
+}
+
+a:link, a:visited, a:active, a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+#container {
+    overflow: hidden;
+    -webkit-perspective: 3000px;
+    -moz-perspective: 3000px;
+    -ms-perspective: 3000px;
+    -o-perspective: 3000px;
+    perspective: 3000px;
+}
+.safari-on-mac #container {
+    -webkit-perspective: 30000px;
+    -moz-perspective: 30000px;
+    -ms-perspective: 30000px;
+    -o-perspective: 30000px;
+    perspective: 30000px;
+}
+
+#cube {
+    position: relative;
+    margin: 0 auto;
+    -webkit-transform: rotateX(0deg) translateZ(-408px);
+    -moz-transform: rotateX(0deg) translateZ(-408px);
+     -ms-transform: rotateX(0deg) translateZ(-408px);
+     -o-transform: rotateX(0deg) translateZ(-408px);
+     transform: rotateX(0deg) translateZ(-408px);
+     -webkit-transform-origin: 50% 50%;
+     -moz-transform-origin: 50% 50%;
+     -ms-transform-origin: 50% 50%;
+     -o-transform-origin: 50% 50%;
+     transform-origin: 50% 50%;
+     -webkit-transform-style: preserve-3d;
+     -moz-transform-style: preserve-3d;
+     -ms-transform-style: preserve-3d;
+     -o-transform-style: preserve-3d;
+     transform-style: preserve-3d;
+ }
+.ms #cube {
+    -webkit-transform: rotateX(0deg) translateZ(0px);
+    -moz-transform: rotateX(0deg) translateZ(0px);
+    -ms-transform: rotateX(0deg) translateZ(0px);
+    -o-transform: rotateX(0deg) translateZ(0px);
+    transform: rotateX(0deg) translateZ(0px); }
+
+.face {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  box-shadow: inset 0 0 80px black;
+  box-sizing: border-box;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.face-content {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+    box-sizing: border-box; color: #fff;
+    left: 50%; padding: 0 30px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%) translateZ(100px);
+    -moz-transform: translateX(-50%) translateY(-50%) translateZ(100px);
+    -ms-transform: translateX(-50%) translateY(-50%) translateZ(100px);
+    -o-transform: translateX(-50%) translateY(-50%) translateZ(100px);
+    transform: translateX(-50%) translateY(-50%) translateZ(100px);
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    width: 100%;
+}

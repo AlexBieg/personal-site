@@ -1,75 +1,144 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Alex Bieg</title>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" href="img/a.png">
+    <head>
+        <meta charset="utf-8">
+        <title>Alex Bieg</title>
+        <link rel="shortcut icon" href="img/at.png">
+        <script>
+            var prefix,
+				isSafariOnMac = /Macintosh.+Safari/.test(navigator.userAgent),
+				isSafari5 = /Macintosh.+Version\/5.+Safari/.test(navigator.userAgent);
 
-	<!-- Include libraries -->
-	<script src="https://code.jquery.com/jquery.min.js"></script>
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
-	<script type="text/javascript" src="js/papaparse.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link href="style/hover.css" rel="stylesheet" media="all">
+            (function(){
+                var html = document.getElementsByTagName('html')[0];
 
-	<!-- Include my files -->
-	<script type="text/javascript" src="js/script.js"></script>
-	<script type="text/javascript" src="js/particles.js"></script>
-	<link rel="stylesheet" type="text/css" href="style/main.css">
-</head>
-<body ng-app="app">
-	<div id="header">
-		<canvas id="particles"></canvas>
-		<h1>Alex Bieg</h1>
-		<div>
-			<h4>Follow Me</h4>
-			<ul>
-				<li>
-					<a class="hvr-buzz" href="https://twitter.com/alex_bieg"><i class="fa fa-twitter"></i></a>
-				</li>
-				<li>
-					<a class="hvr-buzz" href="https://www.linkedin.com/in/alexbieg"><i class="fa fa-linkedin"></i></a>
-				</li>
-				<li>
-					<a class="hvr-buzz" href="https://github.com/AlexBieg/"><i class="fa fa-github"></i></a>
-				</li>
-			</ul>
+                html.className = html.className.replace('no-js','');
+                html.className += navigator.hardwareConcurrency ? ' cores-' + navigator.hardwareConcurrency : ' cores-unknown';
+				html.className += isSafariOnMac ? ' safari-on-mac' : '';
+
+                prefix = (function () {
+                    var styles = window.getComputedStyle(document.documentElement, ''),
+                        pre = (Array.prototype.slice
+                            .call(styles)
+                            .join('')
+                            .match(/-(moz|webkit|ms)-/) || (styles.OLink === '' && ['', 'o'])
+                        )[1],
+                        dom = ('WebKit|Moz|MS|O').match(new RegExp('(' + pre + ')', 'i'))[1];
+                    return {
+                        dom: dom,
+                        lowercase: pre,
+                        css: '-' + pre + '-',
+                        js: pre[0].toUpperCase() + pre.substr(1)
+                    };
+                })();
+
+                html.className += ' ' + prefix.lowercase;
+
+                function testWebP(callback) {
+					var webP = new Image();
+                    webP.onload = webP.onerror = function () {
+                        callback(webP.height == 2);
+                    };
+                    webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+                }
+                function bgInit(hasWebP) {
+                    html.className += (hasWebP ? ' webp' : ' no-webp');
+                }
+                testWebP(bgInit);
+            }());
+        </script>
+        <script src="https://www.envelopvr.com/assets/js/jquery.js"></script>
+        <script src="js/throttle.js"></script>
+        <script src="js/mouse.js"></script>
+        <script src="js/faces.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link href="style/style.css" rel="stylesheet" type="text/css" />
+        <link href="style/hover.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div id="container">
+			<div id="cube">
+				<div class="face one active">
+                    <canvas id="particles"></canvas>
+					<div class="face-content">
+						<h1>Alex Bieg</h1>
+                        <h2>Developer. Designer. Creator.</h2>
+					</div>
+                </div>
+                <div class="face two">
+					<div class="face-content">
+						<h1>About Me</h1>
+                        <p>
+                            I grew up in a tiny town in Oregon called Molalla. There are about 9,000 people and three times as many cows. I never really considered technology as a career. Everyone who went to school there was expected to become a farmer. We had 15 agriculture electives and our only computer class was photoshop. I was never even taught how to type. In my senior year I began teaching myself java so that I could mod Minecraft. In the end I didn't accomplish to much, but I began developing a love for coding.
+                        </p>
+                        <p>
+                            When I came to The University of Washington I thought that I wanted to be a physicist. As it turns out I hate physics. So there was a period where I was lost as to what I wanted to do. One of my roomates, who was in the computer science major, convinced me to take CSE 142, the intro Computer Science class. I immediately took to it. I was always starting on my homework the first day I was able, just because it was fun. While I truly enjoyed doing Computer Science I kept feeling like something was missing.
+                        </p>
+                        <p>
+                            Then I discovered Informatics. It was very similar to Computer Science, but it dealt with people much more. I realized that is what I had been missing. I wanted to write code, and I wanted to do it for people. I did not want to be someone writing code that was only ever used by machines on a server somewhere. I wanted to make something that people could see and use.
+                        </p>
+                        <p>
+                            That brings us up to date. I am still in the Informatics program and I plan to graduate in June of 2017.
+                        </p>
+					</div>
+                </div>
+                <div class="face three">
+					<div class="face-content">
+						<h1>Portfolio</h1>
+                        <div class="port-item">
+                            <a href="https://www.pypo.com/" class="hvr-buzz-out">
+                                <p>PYPO</p>
+                                <img src="img/pypo.png" alt="" />
+                            </a>
+                        </div>
+                        <div class="port-item">
+                            <a href="https://students.washington.edu/biega/info343/Spoogle/" class="hvr-buzz-out">
+                                <p>
+                                    Spoogle
+                                </p>
+                                <img src="img/spoogle.png" alt="" />
+                            </a>
+
+                        </div>
+                        <div class="port-item">
+                            <a href="http://students.washington.edu/biega/info343/police-shooting/" class="hvr-buzz-out">
+                                <p>
+                                    Police Shootings
+                                </p>
+                                <img src="img/police-shootings.png" alt="" />
+                            </a>
+                        </div>
+                        <p>
+                            ..And of course this site.
+                        </p>
+					</div>
+                </div>
+                <div class="face four">
+					<div class="face-content">
+						<h1>Contact Me</h1>
+                        <div class="social-buttons">
+                            <ul>
+                				<li>
+                					<a class="hvr-buzz" href="https://twitter.com/alex_bieg"><i class="fa fa-twitter"></i></a>
+                				</li>
+                				<li>
+                					<a class="hvr-buzz" href="https://www.linkedin.com/in/alexbieg"><i class="fa fa-linkedin"></i></a>
+                				</li>
+                				<li>
+                					<a class="hvr-buzz" href="https://github.com/AlexBieg/"><i class="fa fa-github"></i></a>
+                				</li>
+                			</ul>
+                        </div>
+                        <p class="email">
+                            alexbieg95@gmail.com
+                        </p>
+                        <p>
+                            Feel free to contact me with any oppurtunities. I love working on challenging projects.
+                        </p>
+					</div>
+                </div>
+			</div>
 		</div>
-		<nav id="navbar" class="navbar navbar-default">
-			<div class="container-fluid">
-			<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				</div>
-
-		    <!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul id="nav-list" class="nav navbar-nav">
-						<li><a class="hvr-push" ui-sref="home" ui-sref-active="active">Home</a></li>
-						<li><a class="hvr-push" ui-sref="about" ui-sref-active="active">About</a></li>
-						<li><a class="hvr-push" ui-sref="portfolio" ui-sref-active="active">Portfolio</a></li>
-						<li><a class="hvr-push" ui-sref="blog" ui-sref-active="active" ui-sref-opts="{reload: true}">Blog</a></li>
-					</ul>
-				</div><!-- /.navbar-collapse -->
-		  	</div><!-- /.container-fluid -->
-		</nav>
-	</div>
-	<div id="main">
-		<div class="container" ui-view></div>
-	</div>
-	<div id="footer">
-		<p>&copy 2015 - Alexander Bieg. All rights reserved.</p>
-		<p>Hosted by Arvixe</p>
-	</div>
-</body>
+        </div>
+    </body>
 </html>

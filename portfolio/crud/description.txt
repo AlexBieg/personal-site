@@ -1,1 +1,0 @@
-This CRUD (Create Read Update Delete) application allows users to create accounts using Parse and comment on the product. Bootstrap was employed to create a responsive design page. Users that are logged in are able to write reviews.
