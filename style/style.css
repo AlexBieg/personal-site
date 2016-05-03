@@ -90,6 +90,23 @@ p {
     font-size: 50px;
 }
 
+.breadcrumbs {
+    position: absolute;
+    top: 50%;
+    color: white;
+    right: 15px;
+}
+
+.breadcrumbs ul {
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.breadcrumbs i {
+    position: absolute;
+    right: 13px;
+}
+
 a:link, a:visited, a:active, a:hover {
   text-decoration: none;
   color: #fff;
@@ -158,13 +175,16 @@ a:link, a:visited, a:active, a:hover {
 }
 
 .face-content {
+    padding-left: 60px;
+    padding-right: 60px;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
     -o-backface-visibility: hidden;
     backface-visibility: hidden;
     box-sizing: border-box; color: #fff;
-    left: 50%; padding: 0 30px;
+    left: 50%;
+    /*padding: 0 30px;*/
     position: absolute;
     text-align: center;
     top: 50%;

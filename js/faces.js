@@ -5,6 +5,7 @@ $(function(){
         $up = $('#up'),
 		$down = $('#down'),
 		$cube = $('#cube'),
+		$bcList = $('.breadcrumbs li'),
 		$faces = $cube.find('div.face'),
 		facesLength = $faces.length,
 		activeFaceIndex = 0,
@@ -65,6 +66,8 @@ $(function(){
 		} else if (faceCounter < 0) {
 			faceCounter = 3;
 		}
+
+		changeBreadcrumbs();
 
 		var url = window.location.href.substr(0, window.location.href.length-1);
 		window.location.href = url + faceCounter;
@@ -252,6 +255,11 @@ $(function(){
 		// $down.bind('click', down);
 	}
 
+	function changeBreadcrumbs() {
+		$bcList.css("color", "gray");
+		$($bcList.get(faceCounter)).css("color", "white")
+	}
+
 	function init() {
 		setupEventHandlers();
 		setFaceTransforms();
@@ -262,7 +270,6 @@ $(function(){
 			window.location.href.endsWith("#3")) {
 			//go to that face
 			faceCounter = parseInt(window.location.href.substr(-1));
-			console.log("facecounter: " + faceCounter);
 			scrollDirection = 1;
 			var temp = faceCounter;
 			for (var i = 0; i < temp; i++) {
@@ -278,6 +285,7 @@ $(function(){
 			//start on regular face
 			window.location.href = window.location.href + "#0"
 		}
+		changeBreadcrumbs();
 	}
 
 	init();
