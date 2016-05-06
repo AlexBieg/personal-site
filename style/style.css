@@ -14,31 +14,31 @@ html, body {
 body {
     background-color: #000;
     margin: 0; padding: 0;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none; user-select: none;
+}
+
+h1, h2, h3 {
+    font-family: "Josefin Slab";
+    font-weight: 300;
 }
 
 h1 {
-    font-family: "Josefin Slab";
-    font-size: 150px;
-    font-weight: 300;
+    font-size: 50px;
 }
 
 h2 {
-    font-family: "Josefin Slab";
-    font-size: 80px;
-    font-weight: 300;
+    font-size: 30px;
 }
 
-p {
-    font-size: 30px;
+p, hr{
+    font-size: 14px;
     max-width: 1600px;
     font-weight: 300;
     margin-right: auto;
     margin-left: auto;
+}
+
+.show-big {
+    display: none;
 }
 
 .one {
@@ -64,10 +64,11 @@ p {
 
 .port-item img {
     max-width: 300px;
+    width: 90%;
 }
 
 .port-item p {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 .social-buttons ul{
@@ -82,12 +83,23 @@ p {
 }
 
 .social-buttons i {
-    font-size: 80px;
+    font-size: 40px;
 }
 
 .email,
 .resume {
-    font-size: 50px;
+    font-size: 17px;
+}
+
+.button {
+    border: white 2px solid;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.button:hover {
+    background-color: white;
+    color: black;
 }
 
 .breadcrumbs {
@@ -158,8 +170,6 @@ a:link, a:visited, a:active, a:hover {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-position: center;
-  background-size: cover;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -172,6 +182,17 @@ a:link, a:visited, a:active, a:hover {
   -ms-transform-style: preserve-3d;
   -o-transform-style: preserve-3d;
   transform-style: preserve-3d;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none; user-select: none;
+}
+
+.static-back {
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 .face-content {
@@ -182,7 +203,8 @@ a:link, a:visited, a:active, a:hover {
     -ms-backface-visibility: hidden;
     -o-backface-visibility: hidden;
     backface-visibility: hidden;
-    box-sizing: border-box; color: #fff;
+    box-sizing: border-box;
+    color: #fff;
     left: 50%;
     /*padding: 0 30px;*/
     position: absolute;
@@ -204,4 +226,53 @@ a:link, a:visited, a:active, a:hover {
     -o-transform-style: preserve-3d;
     transform-style: preserve-3d;
     width: 100%;
+}
+
+@media only screen and (min-width: 720px) {
+    .show-big {
+        display: inherit;
+    }
+
+    .show-small {
+        display: none;
+    }
+
+    p {
+        font-size: 25px;
+    }
+
+    h1 {
+        font-size: 100px;
+    }
+
+    h2 {
+        font-size: 60px;
+    }
+
+    h3  {
+        font-size: 40px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    p {
+        font-size: 30px;
+    }
+
+    h1 {
+        font-size: 150px;
+    }
+
+    h2 {
+        font-size: 80px;
+    }
+
+    .email,
+    .resume {
+        font-size: 50px;
+    }
+
+    .social-buttons i {
+        font-size: 80px;
+    }
 }
