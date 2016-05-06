@@ -195,6 +195,10 @@ a:link, a:visited, a:active, a:hover {
     background-attachment: fixed;
 }
 
+.port {
+    position: static;
+}
+
 .face-content {
     padding-left: 60px;
     padding-right: 60px;
