@@ -1,0 +1,164 @@
+@import 'fonts.scss';
+@import 'faces.scss';
+@import 'vars.scss';
+@import 'mixins.scss';
+
+#container,
+#cube,
+body,
+html {
+    height: 100%;
+    width: 100%;
+    font-family: $bodyFont;
+    font-weight: 300;
+}
+
+body,
+html {
+    -webkit-overflow-scrolling: touch;
+}
+
+body {
+    background-color: $bodyBackgroundColor;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3 {
+    font-family: $titleFont;
+    font-weight: $titleWeight;
+}
+
+h1 {
+    @include global-font-size(4);
+    margin: 0;
+}
+
+h2 {
+    @include global-font-size(2);
+}
+
+hr,
+p {
+    @include global-font-size(1);
+    max-width: 1600px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.skills {
+    display: none;
+    table {
+        @include global-font-size(1);
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        th {
+            @include global-font-size(1.3);
+            font-weight: 300;
+            margin-left: 3rem;
+            margin-right: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: solid 2px white;
+            width: 20%;
+        }
+        td {
+            padding-left: .3rem;
+            padding-right: .3rem;
+        }
+    }
+    @media (min-width: 1024px) {
+        display: initial;
+    }
+}
+
+.one {
+    background-image: url("../img/land-one.jpg");
+}
+
+.two {
+    background-image: url("../img/land-three.jpg");
+}
+
+.three {
+    background-image: url("../img/land-two.jpg");
+}
+
+.four {
+    background-image: url("../img/land-four.jpg");
+}
+
+.port-item {
+    img {
+        max-width: 300px;
+        max-height: 20%;
+        width: 60%;
+    }
+
+    p {
+        margin-bottom: 5px;
+    }
+}
+
+.social-buttons {
+    li {
+        display: inline-block;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    i {
+        @include global-font-size(3);
+    }
+}
+
+.email,
+.resume {
+    @include global-font-size(2);
+    word-wrap: break-word;
+}
+
+.button {
+    border: white 2px solid;
+    padding-left: 10%;
+    padding-right: 10%;
+
+    &:hover {
+        background-color: $buttonBackgroundColor;
+        color: $buttonTextColor;
+    }
+}
+
+.breadcrumbs {
+    position: absolute;
+    top: 50%;
+    color: white;
+    right: 15px;
+
+    ul {
+        margin-bottom: 5px;
+        font-size: 20px;
+    }
+
+    i {
+        position: absolute;
+        right: 13px;
+    }
+}
+
+a:active,
+a:hover,
+a:link,
+a:visited {
+    text-decoration: none;
+    color: #fff;
+}

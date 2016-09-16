@@ -1,180 +1,213 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Alex Bieg</title>
-        <link rel="shortcut icon" href="img/at.png">
-        <script>
-            var prefix,
-				isSafariOnMac = /Macintosh.+Safari/.test(navigator.userAgent),
-				isSafari5 = /Macintosh.+Version\/5.+Safari/.test(navigator.userAgent);
 
-            (function(){
-                var html = document.getElementsByTagName('html')[0];
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alex Bieg</title>
+    <link rel="shortcut icon" href="img/at.png">
+    <script>
+        var prefix,
+            isSafariOnMac = /Macintosh.+Safari/.test(navigator.userAgent),
+            isSafari5 = /Macintosh.+Version\/5.+Safari/.test(navigator.userAgent);
 
-                html.className = html.className.replace('no-js','');
-                html.className += navigator.hardwareConcurrency ? ' cores-' + navigator.hardwareConcurrency : ' cores-unknown';
-				html.className += isSafariOnMac ? ' safari-on-mac' : '';
+        (function() {
+            var html = document.getElementsByTagName('html')[0];
 
-                prefix = (function () {
-                    var styles = window.getComputedStyle(document.documentElement, ''),
-                        pre = (Array.prototype.slice
-                            .call(styles)
-                            .join('')
-                            .match(/-(moz|webkit|ms)-/) || (styles.OLink === '' && ['', 'o'])
-                        )[1],
-                        dom = ('WebKit|Moz|MS|O').match(new RegExp('(' + pre + ')', 'i'))[1];
-                    return {
-                        dom: dom,
-                        lowercase: pre,
-                        css: '-' + pre + '-',
-                        js: pre[0].toUpperCase() + pre.substr(1)
-                    };
-                })();
+            html.className = html.className.replace('no-js', '');
+            html.className += navigator.hardwareConcurrency ? ' cores-' + navigator.hardwareConcurrency : ' cores-unknown';
+            html.className += isSafariOnMac ? ' safari-on-mac' : '';
 
-                html.className += ' ' + prefix.lowercase;
+            prefix = (function() {
+                var styles = window.getComputedStyle(document.documentElement, ''),
+                    pre = (Array.prototype.slice
+                        .call(styles)
+                        .join('')
+                        .match(/-(moz|webkit|ms)-/) || (styles.OLink === '' && ['', 'o'])
+                    )[1],
+                    dom = ('WebKit|Moz|MS|O').match(new RegExp('(' + pre + ')', 'i'))[1];
+                return {
+                    dom: dom,
+                    lowercase: pre,
+                    css: '-' + pre + '-',
+                    js: pre[0].toUpperCase() + pre.substr(1)
+                };
+            })();
 
-                function testWebP(callback) {
-					var webP = new Image();
-                    webP.onload = webP.onerror = function () {
-                        callback(webP.height == 2);
-                    };
-                    webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
-                }
-                function bgInit(hasWebP) {
-                    html.className += (hasWebP ? ' webp' : ' no-webp');
-                }
-                testWebP(bgInit);
-            }());
-        </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-        <script src="js/throttle.js"></script>
-        <script src="js/mouse.js"></script>
-        <script src="js/faces.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <link href="style/style.css" rel="stylesheet" type="text/css" />
-        <link href="style/hover.css" rel="stylesheet" type="text/css" />
-    </head>
-    <body>
-        <div id="container">
-			<div id="cube">
-				<div class="face one active static-back">
-					<div class="face-content">
-						<h1>Alex Bieg</h1>
-                        <h2>Developer. Designer. Creator.</h2>
-					</div>
+            html.className += ' ' + prefix.lowercase;
+
+            function testWebP(callback) {
+                var webP = new Image();
+                webP.onload = webP.onerror = function() {
+                    callback(webP.height == 2);
+                };
+                webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+            }
+
+            function bgInit(hasWebP) {
+                html.className += (hasWebP ? ' webp' : ' no-webp');
+            }
+            testWebP(bgInit);
+        }());
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="js/throttle.js"></script>
+    <script src="js/mouse.js"></script>
+    <script src="js/faces.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="style/style.css" rel="stylesheet" type="text/css" />
+    <link href="style/hover.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div id="container">
+        <div id="cube">
+            <div class="face one active static-back">
+                <div class="face-content">
+                    <h1>Alex Bieg</h1>
+                    <h2>Developer. Designer. Creator.</h2>
                 </div>
-                <div class="face two static-back">
-					<div class="face-content">
-						<h1>About Me</h1>
-                        <p class="show-small">
-                            I grew up in a tiny town in Oregon called Molalla. There are about 9,000
-                            people and three times as many cows. In my senior year I began teaching myself
-                            java so that I could mod Minecraft. Then I discovered Informatics. It showed
-                            me how to write code for people. That was something that really spoke to me.
-                            I will graduate from the University of Washington in 2017 with B.S. in
-                            Informatics.
-                        </p>
-                        <p class="show-big">
-                            I grew up in a tiny town in Oregon called Molalla. There are about 9,000
-                            people and three times as many cows. I was never event taught how to type.
-                            In my senior year I began teaching myself java so that I could mod Minecraft.
-                            That is where I started developing a love for coding.
-                        </p>
-                        <p class="show-big">
-                            When I came to The University of Washington I thought that I wanted to be
-                            a physicist. As it turns out I hate physics. One of my roomates convinced me to take CSE 142.
-                            I immediately took to it. I was always starting on my homework
-                            the first day I was able, just because it was fun. While I truly enjoyed
-                            doing Computer Science I kept feeling like something was missing.
-                        </p>
-                        <p class="show-big">
-                            Then I discovered Informatics. It was very similar to Computer Science,
-                            but it dealt with people much more. I realized that is what I had been
-                            missing. I wanted to write code, and I wanted to do it for people. I
-                            did not want to be someone writing code that was only ever used by machines
-                            on a server somewhere. I wanted to make something that people could see
-                            and use.
-                        </p>
-                        <p class="show-big">
-                            That brings us up to date. I am still in the Informatics program and I plan to graduate in June of 2017.
-                        </p>
-					</div>
+            </div>
+            <div class="face two static-back">
+                <div class="face-content">
+                    <h1>About Me</h1>
+                    <p>
+                        I have always loved using, understanding, and, most importantly, changing technology.
+                        There are few things that make me as happy as being able to check out a new
+                        piece of tech, because it embodies many of the qualities that I care about.
+                        Thoughtfulness, Dedication, Persistence, and Intuitiveness to name a few. In whatever I am
+                        doing I try to bring these qualites to the table to make the product, no matter what it
+                        is the best it can be. I am currenty attending the University of Washington when I am
+                        pursuing a B.S. in Informatics. I will be graduation in June of 2017 and am excited to start my career.
+                    </p>
+                    <p>
+                        That brings us up to date. Below is a subset of the skills that I have to offer.
+                    </p>
+                    <div class="skills">
+                        <table cellspacing="0">
+                            <tr>
+                                <th>
+                                    Front End
+                                </th>
+                                <th>
+                                    Back End
+                                </th>
+                                <th>
+                                    Dev Ops
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    HTML5
+                                </td>
+                                <td>
+                                    Java
+                                </td>
+                                <td>
+                                    Gulp
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    CSS/SASS
+                                </td>
+                                <td>
+                                    C#
+                                </td>
+                                <td>
+                                    Unit/Functional Tests
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    JS (JQuery, Angular, React)
+                                </td>
+                                <td>
+                                    Python
+                                </td>
+                                <td>
+                                    Azure
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-                <div class="face three static-back">
-					<div class="face-content">
-						<h1>Portfolio</h1>
-                        <div class="port-item">
-                            <a href="https://www.pypo.com/" class="hvr-buzz-out">
-                                <p>PYPO</p>
-                                <img src="img/pypo.png" alt="" />
-                            </a>
-                        </div>
-                        <div class="port-item">
-                            <a href="https://students.washington.edu/biega/info343/Spoogle/" class="hvr-buzz-out">
-                                <p>
-                                    Spoogle
-                                </p>
-                                <img src="img/spoogle.png" alt="" />
-                            </a>
+            </div>
+            <div class="face three static-back">
+                <div class="face-content">
+                    <h1>Portfolio</h1>
+                    <div class="port-item">
+                        <a href="https://www.pypo.com/" class="hvr-buzz-out">
+                            <p>PYPO</p>
+                            <img src="img/pypo.png" alt="" />
+                        </a>
+                    </div>
+                    <div class="port-item">
+                        <a href="https://students.washington.edu/biega/info343/Spoogle/" class="hvr-buzz-out">
+                            <p>
+                                Spoogle
+                            </p>
+                            <img src="img/spoogle.png" alt="" />
+                        </a>
 
-                        </div>
-                        <div class="port-item show-big">
-                            <a href="http://students.washington.edu/biega/info343/police-shooting/" class="hvr-buzz-out">
-                                <p>
-                                    Police Shootings
-                                </p>
-                                <img src="img/police-shootings.png" alt="" />
-                            </a>
-                        </div>
-                        <p>
-                            <a href="portfolio.html" class="button">See All Projects</a>
-                        </p>
-                        <p class="show-big">
-                            ..And of course this site.
-                        </p>
-					</div>
+                    </div>
+                    <div class="port-item">
+                        <a href="http://students.washington.edu/biega/info343/police-shooting/" class="hvr-buzz-out">
+                            <p>
+                                Police Shootings
+                            </p>
+                            <img src="img/police-shootings.png" alt="" />
+                        </a>
+                    </div>
+                    <p>
+                        <a href="portfolio.html" class="button">See All Projects</a>
+                    </p>
+                    <p>
+                        ..And of course this site.
+                    </p>
                 </div>
-                <div class="face four static-back">
-					<div class="face-content">
-						<h1>Contact Me</h1>
-                        <p class="resume">
-                            <a class="button" href="https://drive.google.com/file/d/0B7hx2uq6WmmZamdCTWJjS0NFUUE/view?usp=sharing">
+            </div>
+            <div class="face four static-back">
+                <div class="face-content">
+                    <h1>Contact Me</h1>
+                    <p class="resume">
+                        <a class="button" href="https://drive.google.com/file/d/0B7hx2uq6WmmZamdCTWJjS0NFUUE/view?usp=sharing">
                                 My Resume
                             </a>
-                        </p>
-                        <div class="social-buttons">
-                            <ul>
-                				<li>
-                					<a class="hvr-buzz" href="https://twitter.com/alex_bieg"><i class="fa fa-twitter"></i></a>
-                				</li>
-                				<li>
-                					<a class="hvr-buzz" href="https://www.linkedin.com/in/alexbieg"><i class="fa fa-linkedin"></i></a>
-                				</li>
-                				<li>
-                					<a class="hvr-buzz" href="https://github.com/AlexBieg/"><i class="fa fa-github"></i></a>
-                				</li>
-                			</ul>
-                        </div>
-                        <p class="email">
-                            alexbieg95@gmail.com
-                        </p>
-                        <p>
-                            Feel free to contact me with any opportunities. I love working on challenging projects.
-                        </p>
-					</div>
+                    </p>
+                    <div class="social-buttons">
+                        <ul>
+                            <li>
+                                <a class="hvr-buzz" href="https://twitter.com/alex_bieg"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a class="hvr-buzz" href="https://www.linkedin.com/in/alexbieg"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a class="hvr-buzz" href="https://github.com/AlexBieg/"><i class="fa fa-github"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <p class="email">
+                        alexbieg95@gmail.com
+                    </p>
+                    <p>
+                        Feel free to contact me with any opportunities. I love working on challenging projects.
+                    </p>
                 </div>
-			</div>
-		</div>
-        <div class="breadcrumbs">
-            <i class="fa fa-angle-up" aria-hidden="true"></i>
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-            <i class="fa fa-angle-down" aria-hidden="true"></i>
+            </div>
         </div>
-    </body>
+    </div>
+    <div class="breadcrumbs">
+        <i class="fa fa-angle-up" aria-hidden="true"></i>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <i class="fa fa-angle-down" aria-hidden="true"></i>
+    </div>
+</body>
+
 </html>
