@@ -32,7 +32,7 @@ h3 {
 }
 
 h1 {
-    @include global-font-size(4);
+    @include global-font-size(3);
     margin: 0;
 }
 
@@ -42,7 +42,7 @@ h2 {
 
 hr,
 p {
-    @include global-font-size(1);
+    @include global-font-size(.8);
     max-width: 1600px;
     margin-right: auto;
     margin-left: auto;
@@ -50,13 +50,23 @@ p {
     padding-right: 1rem;
 }
 
+.big-screen {
+    display: none;
+    @media (min-width: 1024px) {
+        display: initial;
+    }
+}
+
 .skills {
     display: none;
+
     table {
+        padding-top: 1rem;
         @include global-font-size(1);
         margin-left: auto;
         margin-right: auto;
         width: 80%;
+
         th {
             @include global-font-size(1.3);
             font-weight: 300;
@@ -66,9 +76,10 @@ p {
             border-bottom: solid 2px white;
             width: 20%;
         }
+
         td {
-            padding-left: .3rem;
-            padding-right: .3rem;
+            padding-left: 0.3rem;
+            padding-right: 0.3rem;
         }
     }
     @media (min-width: 1024px) {
@@ -123,7 +134,7 @@ p {
 
 .email,
 .resume {
-    @include global-font-size(2);
+    @include global-font-size(1.5);
     word-wrap: break-word;
 }
 
