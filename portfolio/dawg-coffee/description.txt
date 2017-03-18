@@ -1,1 +1,0 @@
-This site uses bootstrap to create a responsive design experience for the user. Links in the navigation bar direct the user to certain points along the page. 
