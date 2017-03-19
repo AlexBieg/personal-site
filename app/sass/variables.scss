@@ -1,0 +1,28 @@
+/* Colors */
+$background-color: #2F2F2F;
+$notify-color: #EE4A39;
+$main-text-color: #D5D5D5;
+$dark-alt-color: #395A62;
+
+/* Breakpoints */
+$breakpoints: (
+    mobile: 0px,
+    tablet: 600px,
+    desktop: 992px,
+    wide: 1200px
+);
+
+/* Fonts */
+$title-font: 'Lato', sans-serif;
+
+
+/* Font Sizes */
+$header-font-sizes: (
+    mobile: 3rem,
+    tablet: 5rem,
+    desktop: 7rem,
+    wide: 8rem
+);
+
+$sub-header-font-sizes: (
+)
