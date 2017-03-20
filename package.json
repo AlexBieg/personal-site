@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/AlexBieg/personal-site#readme",
   "dependencies": {
+    "chart.js": "^2.5.0",
+    "common.js": "^1.1.1",
     "express": "^4.15.2"
   },
   "devDependencies": {

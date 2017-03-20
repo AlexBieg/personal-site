@@ -1,6 +1,7 @@
 /* Colors */
 $background-color: #2F2F2F;
 $notify-color: #EE4A39;
+$muted-notify-color: #ff9c8b;
 $main-text-color: #D5D5D5;
 $dark-alt-color: #395A62;
 
@@ -25,4 +26,8 @@ $header-font-sizes: (
 );
 
 $sub-header-font-sizes: (
+    mobile: 2rem,
+    tablet: 4rem,
+    desktop: 5rem,
+    wide: 6rem
 )

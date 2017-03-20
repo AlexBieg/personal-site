@@ -11,13 +11,13 @@ html {
 
 .header {
   background: #EE4A39;
-  background: -webkit-linear-gradient(#2F2F2F, #EE4A39);
+  background: -webkit-linear-gradient(#EE4A39, #395A62 80%, #2F2F2F);
   /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#2F2F2F, #EE4A39);
+  background: -o-linear-gradient(#EE4A39, #395A62 80%, #2F2F2F);
   /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#2F2F2F, #EE4A39);
+  background: -moz-linear-gradient(#EE4A39, #395A62 80%, #2F2F2F);
   /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#2F2F2F, #EE4A39);
+  background: linear-gradient(#EE4A39, #395A62 80%, #2F2F2F);
   /* Standard syntax */ }
   .header img {
     max-width: 100%;
@@ -26,7 +26,6 @@ html {
   .header h1 {
     margin-top: 0px;
     padding-top: 2rem;
-    color: #D5D5D5;
     font-family: "Lato", sans-serif;
     font-weight: 100;
     text-align: center; }
@@ -42,6 +41,29 @@ html {
     @media screen and (min-width: 1200px) {
       .header h1 {
         font-size: 8rem; } }
+
+.main h2 {
+  font-weight: 100;
+  padding-top: 2rem; }
+  @media screen and (min-width: 0px) {
+    .main h2 {
+      font-size: 2rem; } }
+  @media screen and (min-width: 600px) {
+    .main h2 {
+      font-size: 4rem; } }
+  @media screen and (min-width: 992px) {
+    .main h2 {
+      font-size: 5rem; } }
+  @media screen and (min-width: 1200px) {
+    .main h2 {
+      font-size: 6rem; } }
+
+.main h3 {
+  font-weight: 100;
+  padding-bottom: 2rem; }
+
+.main .do {
+  background-color: #395A62; }
 
 
 /* Colors */
