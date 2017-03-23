@@ -49,3 +49,7 @@ html {
         background-color: $dark-alt-color;
     }
 }
+
+.fade-in-at-start {
+    @include fadeIn(1s);
+}
