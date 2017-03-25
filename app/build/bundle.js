@@ -1,13 +1,146 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-$ = JQuery = require('jquery');
+module.exports={
+    "data": [{
+            "labels": ["  Java", "  Javascript", "  Python", "  Ruby", "  C#", "  C", " Assembly"],
+            "datasets": [{
+                "data": [95, 95, 85, 70, 95, 60, 60],
+                "backgroundColor": [
+                    "rgba(238, 74, 57, 0.2)"
+                ],
+                "borderColor": [
+                    "rgba(238, 74, 51, 1)"
+                ],
+                "borderWidth": 1
+            }]
+        },
+        {
+            "labels": ["  Azure", "  AWS", "  Android", "  SQL Server", "  NodeJS",  "  ASP.NET"],
+            "datasets": [{
+                "data": [70, 80, 90, 95, 85, 70],
+                "backgroundColor": [
+                    "rgba(74, 131, 246, 0.2)"
+                ],
+                "borderColor": [
+                    "rgba(74, 131, 246, 1)"
+                ],
+                "borderWidth": 1
+            }]
+        }
+    ]
+}
+
+},{}],2:[function(require,module,exports){
 var Chart = require('chart.js');
 
-$(document).ready(function() {
-    'use strict';
 
+// Defaults
+Chart.defaults.global.defaultFontColor = "#FFFFFF";
+Chart.defaults.global.defaultFontSize = 10;
+
+function ChartHandler(elem, data) {
+    this.elem = elem;
+    this.data = data;
+}
+
+ChartHandler.prototype.buildChart = function() {
+    return new Chart(this.elem, {
+        type: 'radar',
+        data: this.data,
+        options: {
+            legend: {
+                display: false
+            },
+            scale: {
+                ticks: {
+                    showLabelBackdrop: false,
+                    min: 0,
+                    max: 100,
+                    stepSize: 20
+                },
+                pointLabels: {
+                    fontSize: 15
+                }
+            }
+        }
+    });
+};
+
+module.exports = ChartHandler;
+
+},{"chart.js":4}],3:[function(require,module,exports){
+$ = JQuery = require('jquery');
+require('jquery-match-height');
+var ChartHandler = require('./chart-handler.js');
+
+// Json Requires
+var chartData = require('../data/chart-data.json');
+
+
+//========================
+// Constants
+//=======================
+var apiBaseUrl = location.protocol + '//' + location.host + '/api/';
+
+
+$(document).ready(function() {
+    //set up
+    buildCharts();
+    displayProjects();
 });
 
-},{"chart.js":2,"jquery":49}],2:[function(require,module,exports){
+function buildCharts() {
+    var chart = new ChartHandler($(".skill-chart"), chartData.data[0]);
+    chart.buildChart();
+    var chart2 = new ChartHandler($(".tech-chart"), chartData.data[1]);
+    chart2.buildChart();
+}
+
+function displayProjects() {
+    $.getJSON(apiBaseUrl + "GetProjects", function(resp) {
+        showProjects(resp.projects);
+    });
+}
+
+function showProjects(projects) {
+    var projectsDiv = $(".projects");
+    for (var i = 0; i < projects.length; i++) {
+        var projectContainer = $('<div>');
+        projectContainer.addClass('project-container col sm12 m6 l4');
+
+        var newProject = $("<div>");
+        newProject.addClass("project hvr-bounce-to-bottom");
+
+        var link = $('<a>');
+        link.attr('href', projects[i].link);
+
+        var title = $('<h4>');
+        title.text(projects[i].title);
+        newProject.append(title);
+
+        var desc = $('<p>');
+        desc.text(projects[i].desc);
+        newProject.append(desc);
+
+        var img = $('<img>');
+        img.addClass("circle");
+        img.attr('src', projects[i].img);
+        newProject.append(img);
+
+        var ul = $('<ul>');
+        for (var j = 0; j < projects[i].technologies.length; j++) {
+            ul.append($('<li>').text(projects[i].technologies[j]));
+        }
+        newProject.append(ul);
+
+        link.append(newProject);
+
+        projectContainer.append(link);
+
+        projectsDiv.append(projectContainer);
+    }
+}
+
+},{"../data/chart-data.json":1,"./chart-handler.js":2,"jquery":52,"jquery-match-height":51}],4:[function(require,module,exports){
 /**
  * @namespace Chart
  */
@@ -61,7 +194,7 @@ require('./charts/Chart.Scatter')(Chart);
 
 window.Chart = module.exports = Chart;
 
-},{"./charts/Chart.Bar":3,"./charts/Chart.Bubble":4,"./charts/Chart.Doughnut":5,"./charts/Chart.Line":6,"./charts/Chart.PolarArea":7,"./charts/Chart.Radar":8,"./charts/Chart.Scatter":9,"./controllers/controller.bar":10,"./controllers/controller.bubble":11,"./controllers/controller.doughnut":12,"./controllers/controller.line":13,"./controllers/controller.polarArea":14,"./controllers/controller.radar":15,"./core/core.animation":16,"./core/core.canvasHelpers":17,"./core/core.controller":18,"./core/core.datasetController":19,"./core/core.element":20,"./core/core.helpers":21,"./core/core.interaction":22,"./core/core.js":23,"./core/core.layoutService":24,"./core/core.legend":25,"./core/core.plugin.js":26,"./core/core.scale":27,"./core/core.scaleService":28,"./core/core.ticks.js":29,"./core/core.title":30,"./core/core.tooltip":31,"./elements/element.arc":32,"./elements/element.line":33,"./elements/element.point":34,"./elements/element.rectangle":35,"./platforms/platform.js":37,"./scales/scale.category":38,"./scales/scale.linear":39,"./scales/scale.linearbase.js":40,"./scales/scale.logarithmic":41,"./scales/scale.radialLinear":42,"./scales/scale.time":43}],3:[function(require,module,exports){
+},{"./charts/Chart.Bar":5,"./charts/Chart.Bubble":6,"./charts/Chart.Doughnut":7,"./charts/Chart.Line":8,"./charts/Chart.PolarArea":9,"./charts/Chart.Radar":10,"./charts/Chart.Scatter":11,"./controllers/controller.bar":12,"./controllers/controller.bubble":13,"./controllers/controller.doughnut":14,"./controllers/controller.line":15,"./controllers/controller.polarArea":16,"./controllers/controller.radar":17,"./core/core.animation":18,"./core/core.canvasHelpers":19,"./core/core.controller":20,"./core/core.datasetController":21,"./core/core.element":22,"./core/core.helpers":23,"./core/core.interaction":24,"./core/core.js":25,"./core/core.layoutService":26,"./core/core.legend":27,"./core/core.plugin.js":28,"./core/core.scale":29,"./core/core.scaleService":30,"./core/core.ticks.js":31,"./core/core.title":32,"./core/core.tooltip":33,"./elements/element.arc":34,"./elements/element.line":35,"./elements/element.point":36,"./elements/element.rectangle":37,"./platforms/platform.js":39,"./scales/scale.category":40,"./scales/scale.linear":41,"./scales/scale.linearbase.js":42,"./scales/scale.logarithmic":43,"./scales/scale.radialLinear":44,"./scales/scale.time":45}],5:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -74,7 +207,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],4:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -86,7 +219,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],5:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -99,7 +232,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],6:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -112,7 +245,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],7:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -125,7 +258,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],8:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -138,7 +271,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -187,7 +320,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],10:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -729,7 +862,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -853,7 +986,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],12:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -1158,7 +1291,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],13:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -1499,7 +1632,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],14:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -1716,7 +1849,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],15:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -1899,7 +2032,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],16:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 /* global window: false */
 'use strict';
 
@@ -2040,7 +2173,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],17:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -2166,7 +2299,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],18:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -2920,7 +3053,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],19:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -3231,7 +3364,7 @@ module.exports = function(Chart) {
 	Chart.DatasetController.extend = helpers.inherits;
 };
 
-},{}],20:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -3329,7 +3462,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],21:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 /* global window: false */
 /* global document: false */
 'use strict';
@@ -4300,7 +4433,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{"chartjs-color":45}],22:[function(require,module,exports){
+},{"chartjs-color":47}],24:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -4614,7 +4747,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],23:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 
 module.exports = function() {
@@ -4672,7 +4805,7 @@ module.exports = function() {
 	return Chart;
 };
 
-},{}],24:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -5043,7 +5176,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],25:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -5581,7 +5714,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],26:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -5908,7 +6041,7 @@ module.exports = function(Chart) {
 	Chart.PluginBase = helpers.inherits({});
 };
 
-},{}],27:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -6669,7 +6802,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],28:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -6711,7 +6844,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],29:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -6921,7 +7054,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],30:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -7143,7 +7276,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],31:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -8025,7 +8158,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],32:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -8131,7 +8264,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],33:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -8317,7 +8450,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],34:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -8419,7 +8552,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],35:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -8629,7 +8762,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],36:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 'use strict';
 
 // Chart.Platform implementation for targeting a web browser
@@ -8908,7 +9041,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],37:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 'use strict';
 
 // By default, select the browser (DOM) platform.
@@ -8979,7 +9112,7 @@ module.exports = function(Chart) {
 	Chart.helpers.extend(Chart.platform, implementation(Chart));
 };
 
-},{"./platform.dom.js":36}],38:[function(require,module,exports){
+},{"./platform.dom.js":38}],40:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -9106,7 +9239,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],39:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -9292,7 +9425,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],40:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -9392,7 +9525,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],41:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -9638,7 +9771,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],42:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -10153,7 +10286,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],43:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 /* global window: false */
 'use strict';
 
@@ -10611,7 +10744,7 @@ module.exports = function(Chart) {
 
 };
 
-},{"moment":50}],44:[function(require,module,exports){
+},{"moment":53}],46:[function(require,module,exports){
 /* MIT license */
 var colorNames = require('color-name');
 
@@ -10834,7 +10967,7 @@ for (var name in colorNames) {
    reverseNames[colorNames[name]] = name;
 }
 
-},{"color-name":48}],45:[function(require,module,exports){
+},{"color-name":50}],47:[function(require,module,exports){
 /* MIT license */
 var convert = require('color-convert');
 var string = require('chartjs-color-string');
@@ -11321,7 +11454,7 @@ if (typeof window !== 'undefined') {
 
 module.exports = Color;
 
-},{"chartjs-color-string":44,"color-convert":47}],46:[function(require,module,exports){
+},{"chartjs-color-string":46,"color-convert":49}],48:[function(require,module,exports){
 /* MIT license */
 
 module.exports = {
@@ -12021,7 +12154,7 @@ for (var key in cssKeywords) {
   reverseKeywords[JSON.stringify(cssKeywords[key])] = key;
 }
 
-},{}],47:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 var conversions = require("./conversions");
 
 var convert = function() {
@@ -12114,7 +12247,7 @@ Converter.prototype.getValues = function(space) {
 });
 
 module.exports = convert;
-},{"./conversions":46}],48:[function(require,module,exports){
+},{"./conversions":48}],50:[function(require,module,exports){
 module.exports = {
 	"aliceblue": [240, 248, 255],
 	"antiquewhite": [250, 235, 215],
@@ -12265,7 +12398,397 @@ module.exports = {
 	"yellow": [255, 255, 0],
 	"yellowgreen": [154, 205, 50]
 };
-},{}],49:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
+/**
+* jquery-match-height 0.7.2 by @liabru
+* http://brm.io/jquery-match-height/
+* License: MIT
+*/
+
+;(function(factory) { // eslint-disable-line no-extra-semi
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        // AMD
+        define(['jquery'], factory);
+    } else if (typeof module !== 'undefined' && module.exports) {
+        // CommonJS
+        module.exports = factory(require('jquery'));
+    } else {
+        // Global
+        factory(jQuery);
+    }
+})(function($) {
+    /*
+    *  internal
+    */
+
+    var _previousResizeWidth = -1,
+        _updateTimeout = -1;
+
+    /*
+    *  _parse
+    *  value parse utility function
+    */
+
+    var _parse = function(value) {
+        // parse value and convert NaN to 0
+        return parseFloat(value) || 0;
+    };
+
+    /*
+    *  _rows
+    *  utility function returns array of jQuery selections representing each row
+    *  (as displayed after float wrapping applied by browser)
+    */
+
+    var _rows = function(elements) {
+        var tolerance = 1,
+            $elements = $(elements),
+            lastTop = null,
+            rows = [];
+
+        // group elements by their top position
+        $elements.each(function(){
+            var $that = $(this),
+                top = $that.offset().top - _parse($that.css('margin-top')),
+                lastRow = rows.length > 0 ? rows[rows.length - 1] : null;
+
+            if (lastRow === null) {
+                // first item on the row, so just push it
+                rows.push($that);
+            } else {
+                // if the row top is the same, add to the row group
+                if (Math.floor(Math.abs(lastTop - top)) <= tolerance) {
+                    rows[rows.length - 1] = lastRow.add($that);
+                } else {
+                    // otherwise start a new row group
+                    rows.push($that);
+                }
+            }
+
+            // keep track of the last row top
+            lastTop = top;
+        });
+
+        return rows;
+    };
+
+    /*
+    *  _parseOptions
+    *  handle plugin options
+    */
+
+    var _parseOptions = function(options) {
+        var opts = {
+            byRow: true,
+            property: 'height',
+            target: null,
+            remove: false
+        };
+
+        if (typeof options === 'object') {
+            return $.extend(opts, options);
+        }
+
+        if (typeof options === 'boolean') {
+            opts.byRow = options;
+        } else if (options === 'remove') {
+            opts.remove = true;
+        }
+
+        return opts;
+    };
+
+    /*
+    *  matchHeight
+    *  plugin definition
+    */
+
+    var matchHeight = $.fn.matchHeight = function(options) {
+        var opts = _parseOptions(options);
+
+        // handle remove
+        if (opts.remove) {
+            var that = this;
+
+            // remove fixed height from all selected elements
+            this.css(opts.property, '');
+
+            // remove selected elements from all groups
+            $.each(matchHeight._groups, function(key, group) {
+                group.elements = group.elements.not(that);
+            });
+
+            // TODO: cleanup empty groups
+
+            return this;
+        }
+
+        if (this.length <= 1 && !opts.target) {
+            return this;
+        }
+
+        // keep track of this group so we can re-apply later on load and resize events
+        matchHeight._groups.push({
+            elements: this,
+            options: opts
+        });
+
+        // match each element's height to the tallest element in the selection
+        matchHeight._apply(this, opts);
+
+        return this;
+    };
+
+    /*
+    *  plugin global options
+    */
+
+    matchHeight.version = '0.7.2';
+    matchHeight._groups = [];
+    matchHeight._throttle = 80;
+    matchHeight._maintainScroll = false;
+    matchHeight._beforeUpdate = null;
+    matchHeight._afterUpdate = null;
+    matchHeight._rows = _rows;
+    matchHeight._parse = _parse;
+    matchHeight._parseOptions = _parseOptions;
+
+    /*
+    *  matchHeight._apply
+    *  apply matchHeight to given elements
+    */
+
+    matchHeight._apply = function(elements, options) {
+        var opts = _parseOptions(options),
+            $elements = $(elements),
+            rows = [$elements];
+
+        // take note of scroll position
+        var scrollTop = $(window).scrollTop(),
+            htmlHeight = $('html').outerHeight(true);
+
+        // get hidden parents
+        var $hiddenParents = $elements.parents().filter(':hidden');
+
+        // cache the original inline style
+        $hiddenParents.each(function() {
+            var $that = $(this);
+            $that.data('style-cache', $that.attr('style'));
+        });
+
+        // temporarily must force hidden parents visible
+        $hiddenParents.css('display', 'block');
+
+        // get rows if using byRow, otherwise assume one row
+        if (opts.byRow && !opts.target) {
+
+            // must first force an arbitrary equal height so floating elements break evenly
+            $elements.each(function() {
+                var $that = $(this),
+                    display = $that.css('display');
+
+                // temporarily force a usable display value
+                if (display !== 'inline-block' && display !== 'flex' && display !== 'inline-flex') {
+                    display = 'block';
+                }
+
+                // cache the original inline style
+                $that.data('style-cache', $that.attr('style'));
+
+                $that.css({
+                    'display': display,
+                    'padding-top': '0',
+                    'padding-bottom': '0',
+                    'margin-top': '0',
+                    'margin-bottom': '0',
+                    'border-top-width': '0',
+                    'border-bottom-width': '0',
+                    'height': '100px',
+                    'overflow': 'hidden'
+                });
+            });
+
+            // get the array of rows (based on element top position)
+            rows = _rows($elements);
+
+            // revert original inline styles
+            $elements.each(function() {
+                var $that = $(this);
+                $that.attr('style', $that.data('style-cache') || '');
+            });
+        }
+
+        $.each(rows, function(key, row) {
+            var $row = $(row),
+                targetHeight = 0;
+
+            if (!opts.target) {
+                // skip apply to rows with only one item
+                if (opts.byRow && $row.length <= 1) {
+                    $row.css(opts.property, '');
+                    return;
+                }
+
+                // iterate the row and find the max height
+                $row.each(function(){
+                    var $that = $(this),
+                        style = $that.attr('style'),
+                        display = $that.css('display');
+
+                    // temporarily force a usable display value
+                    if (display !== 'inline-block' && display !== 'flex' && display !== 'inline-flex') {
+                        display = 'block';
+                    }
+
+                    // ensure we get the correct actual height (and not a previously set height value)
+                    var css = { 'display': display };
+                    css[opts.property] = '';
+                    $that.css(css);
+
+                    // find the max height (including padding, but not margin)
+                    if ($that.outerHeight(false) > targetHeight) {
+                        targetHeight = $that.outerHeight(false);
+                    }
+
+                    // revert styles
+                    if (style) {
+                        $that.attr('style', style);
+                    } else {
+                        $that.css('display', '');
+                    }
+                });
+            } else {
+                // if target set, use the height of the target element
+                targetHeight = opts.target.outerHeight(false);
+            }
+
+            // iterate the row and apply the height to all elements
+            $row.each(function(){
+                var $that = $(this),
+                    verticalPadding = 0;
+
+                // don't apply to a target
+                if (opts.target && $that.is(opts.target)) {
+                    return;
+                }
+
+                // handle padding and border correctly (required when not using border-box)
+                if ($that.css('box-sizing') !== 'border-box') {
+                    verticalPadding += _parse($that.css('border-top-width')) + _parse($that.css('border-bottom-width'));
+                    verticalPadding += _parse($that.css('padding-top')) + _parse($that.css('padding-bottom'));
+                }
+
+                // set the height (accounting for padding and border)
+                $that.css(opts.property, (targetHeight - verticalPadding) + 'px');
+            });
+        });
+
+        // revert hidden parents
+        $hiddenParents.each(function() {
+            var $that = $(this);
+            $that.attr('style', $that.data('style-cache') || null);
+        });
+
+        // restore scroll position if enabled
+        if (matchHeight._maintainScroll) {
+            $(window).scrollTop((scrollTop / htmlHeight) * $('html').outerHeight(true));
+        }
+
+        return this;
+    };
+
+    /*
+    *  matchHeight._applyDataApi
+    *  applies matchHeight to all elements with a data-match-height attribute
+    */
+
+    matchHeight._applyDataApi = function() {
+        var groups = {};
+
+        // generate groups by their groupId set by elements using data-match-height
+        $('[data-match-height], [data-mh]').each(function() {
+            var $this = $(this),
+                groupId = $this.attr('data-mh') || $this.attr('data-match-height');
+
+            if (groupId in groups) {
+                groups[groupId] = groups[groupId].add($this);
+            } else {
+                groups[groupId] = $this;
+            }
+        });
+
+        // apply matchHeight to each group
+        $.each(groups, function() {
+            this.matchHeight(true);
+        });
+    };
+
+    /*
+    *  matchHeight._update
+    *  updates matchHeight on all current groups with their correct options
+    */
+
+    var _update = function(event) {
+        if (matchHeight._beforeUpdate) {
+            matchHeight._beforeUpdate(event, matchHeight._groups);
+        }
+
+        $.each(matchHeight._groups, function() {
+            matchHeight._apply(this.elements, this.options);
+        });
+
+        if (matchHeight._afterUpdate) {
+            matchHeight._afterUpdate(event, matchHeight._groups);
+        }
+    };
+
+    matchHeight._update = function(throttle, event) {
+        // prevent update if fired from a resize event
+        // where the viewport width hasn't actually changed
+        // fixes an event looping bug in IE8
+        if (event && event.type === 'resize') {
+            var windowWidth = $(window).width();
+            if (windowWidth === _previousResizeWidth) {
+                return;
+            }
+            _previousResizeWidth = windowWidth;
+        }
+
+        // throttle updates
+        if (!throttle) {
+            _update(event);
+        } else if (_updateTimeout === -1) {
+            _updateTimeout = setTimeout(function() {
+                _update(event);
+                _updateTimeout = -1;
+            }, matchHeight._throttle);
+        }
+    };
+
+    /*
+    *  bind events
+    */
+
+    // apply on DOM ready event
+    $(matchHeight._applyDataApi);
+
+    // use on or bind where supported
+    var on = $.fn.on ? 'on' : 'bind';
+
+    // update heights on load and resize events
+    $(window)[on]('load', function(event) {
+        matchHeight._update(false, event);
+    });
+
+    // throttled update heights on resize events
+    $(window)[on]('resize orientationchange', function(event) {
+        matchHeight._update(true, event);
+    });
+
+});
+
+},{"jquery":52}],52:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.2.1
  * https://jquery.com/
@@ -22520,7 +23043,7 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{}],50:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 //! moment.js
 //! version : 2.18.0
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
@@ -26985,4 +27508,4 @@ return hooks;
 
 })));
 
-},{}]},{},[1]);
+},{}]},{},[3]);

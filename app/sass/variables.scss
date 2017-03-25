@@ -2,8 +2,13 @@
 $background-color: #2F2F2F;
 $notify-color: #EE4A39;
 $muted-notify-color: #ff9c8b;
+$notify-alt-color: #1062b4;
 $main-text-color: #D5D5D5;
 $dark-alt-color: #395A62;
+$medium-gray: #838383;
+
+/* Fade Percentage */
+$headerFadePercent: 90%;
 
 /* Breakpoints */
 $breakpoints: (
@@ -30,4 +35,19 @@ $sub-header-font-sizes: (
     tablet: 4rem,
     desktop: 5rem,
     wide: 6rem
+);
+
+$h3-font-sizes: (
+    mobile: 1.8rem,
+    tablet: 3rem,
+    desktop: 3rem,
+    wide: 3rem
+);
+
+/* Picture Widths */
+$project-picture-widths: (
+    mobile: 100%,
+    tablet: 50%,
+    desktop: 25%,
+    wide: 15%
 )

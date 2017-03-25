@@ -1,60 +1,131 @@
+/* Colors */
+/* Fade Percentage */
+/* Breakpoints */
+/* Fonts */
+/* Font Sizes */
+/* Picture Widths */
+/* Bounce To Bottom */
+.hvr-bounce-to-bottom {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s; }
+
+.hvr-bounce-to-bottom:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #1062b4;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out; }
+
+.hvr-bounce-to-bottom:hover, .hvr-bounce-to-bottom:focus, .hvr-bounce-to-bottom:active {
+  color: white; }
+
+.hvr-bounce-to-bottom:hover:before, .hvr-bounce-to-bottom:focus:before, .hvr-bounce-to-bottom:active:before {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+  transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66); }
+
 /* Fonts */
 @import url("https://fonts.googleapis.com/css?family=Lato:100, 400|Roboto");
 /* Other files */
 /* Colors */
+/* Fade Percentage */
 /* Breakpoints */
 /* Fonts */
 /* Font Sizes */
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
+/* Picture Widths */
+/* Colors */
+/* Fade Percentage */
+/* Breakpoints */
+/* Fonts */
+/* Font Sizes */
+/* Picture Widths */
+/* Bounce To Bottom */
+.hvr-bounce-to-bottom {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s; }
 
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
+.hvr-bounce-to-bottom:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #1062b4;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out; }
 
-@-o-keyframes fadeIn {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
+.hvr-bounce-to-bottom:hover, .hvr-bounce-to-bottom:focus, .hvr-bounce-to-bottom:active {
+  color: white; }
 
-@-ms-keyframes fadeIn {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
+.hvr-bounce-to-bottom:hover:before, .hvr-bounce-to-bottom:focus:before, .hvr-bounce-to-bottom:active:before {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+  transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66); }
 
 html {
   background-color: #2F2F2F;
   color: #D5D5D5; }
 
+a {
+  color: inherit; }
+
 .header {
   background: #EE4A39;
-  background: -webkit-linear-gradient(#EE4A39, #395A62 80%, #2F2F2F);
+  background: -webkit-linear-gradient(#838383, #EE4A39 90%, #2F2F2F);
   /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#EE4A39, #395A62 80%, #2F2F2F);
+  background: -o-linear-gradient(#838383, #EE4A39 90%, #2F2F2F);
   /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#EE4A39, #395A62 80%, #2F2F2F);
+  background: -moz-linear-gradient(#838383, #EE4A39 90%, #2F2F2F);
   /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#EE4A39, #395A62 80%, #2F2F2F);
+  background: linear-gradient(#838383, #EE4A39 90%, #2F2F2F);
   /* Standard syntax */ }
   .header img {
     max-width: 100%;
     width: 100%;
     display: block; }
   .header h1 {
-    margin-top: 0px;
+    margin-top: 0;
     padding-top: 2rem;
     font-family: "Lato", sans-serif;
     font-weight: 100;
@@ -91,48 +162,46 @@ html {
 .main h3 {
   font-weight: 100;
   padding-bottom: 2rem; }
+  @media screen and (min-width: 0px) {
+    .main h3 {
+      font-size: 1.8rem; } }
+  @media screen and (min-width: 600px) {
+    .main h3 {
+      font-size: 3rem; } }
+  @media screen and (min-width: 992px) {
+    .main h3 {
+      font-size: 3rem; } }
+  @media screen and (min-width: 1200px) {
+    .main h3 {
+      font-size: 3rem; } }
 
+.main .contact,
 .main .do {
-  background-color: #395A62; }
+  background-color: #395A62;
+  padding-bottom: 1rem; }
 
-.fade-in-at-start {
-  -moz-animation: fadeIn 1s;
-  -webkit-animation: fadeIn 1s;
-  -o-animation: fadeIn 1s;
-  -ms-animation: fadeIn 1s;
-  animation: fadeIn 1s; }
+.main .projects {
+  background-color: #2F2F2F; }
 
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
+.chart-container h3 {
+  text-align: center; }
 
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
+.project-container {
+  margin-bottom: 2rem; }
+  .project-container .project {
+    color: white;
+    background-color: #838383;
+    text-align: center;
+    padding: 1rem; }
+    .project-container .project img {
+      /*@include pic-width($project-picture-widths);*/
+      background-color: white;
+      width: 100%; }
 
-@-o-keyframes fadeIn {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
-
-@-ms-keyframes fadeIn {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
 
 /* Colors */
+/* Fade Percentage */
 /* Breakpoints */
 /* Fonts */
 /* Font Sizes */
+/* Picture Widths */

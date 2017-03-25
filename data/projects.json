@@ -1,0 +1,48 @@
+{
+    "projects": [
+        {
+            "title": "Location Tagger",
+            "desc": "Tags locations via a phone",
+            "link": "https://github.com/AlexBieg/LocationTagger",
+            "img": "http://www.clipartkid.com/images/24/clipart-map-pin-clipart-panda-free-clipart-images-QwCwRn-clipart.png",
+            "technologies": [
+                "android",
+                "google maps api",
+                "firebase",
+                "augmented reality"
+            ]
+        },
+        {
+            "title": "Location Tagger",
+            "desc": "Tags locations via a phone",
+            "link": "https://github.com/AlexBieg/LocationTagger",
+            "img": "http://www.clipartkid.com/images/24/clipart-map-pin-clipart-panda-free-clipart-images-QwCwRn-clipart.png",
+            "technologies": [
+                "android",
+                "google maps api"
+            ]
+        },{
+            "title": "Location Tagger",
+            "desc": "Tags locations via a phone",
+            "link": "https://github.com/AlexBieg/LocationTagger",
+            "img": "http://www.clipartkid.com/images/24/clipart-map-pin-clipart-panda-free-clipart-images-QwCwRn-clipart.png",
+            "technologies": [
+                "android",
+                "google maps api",
+                "firebase",
+                "augmented reality"
+            ]
+        },{
+            "title": "Location Tagger",
+            "desc": "Tags locations via a phone",
+            "link": "https://github.com/AlexBieg/LocationTagger",
+            "img": "http://www.clipartkid.com/images/24/clipart-map-pin-clipart-panda-free-clipart-images-QwCwRn-clipart.png",
+            "technologies": [
+                "android",
+                "google maps api",
+                "firebase",
+                "augmented reality"
+            ]
+        }
+    ]
+}
