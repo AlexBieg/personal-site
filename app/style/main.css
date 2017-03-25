@@ -47,7 +47,12 @@
   transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66); }
 
 /* Fonts */
-@import url("https://fonts.googleapis.com/css?family=Lato:100, 400|Roboto");
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 100;
+  src: url("../fonts/Lato/Lato-Hairline.ttf"); }
+
 /* Other files */
 /* Colors */
 /* Fade Percentage */
@@ -127,7 +132,7 @@ a {
   .header h1 {
     margin-top: 0;
     padding-top: 2rem;
-    font-family: "Lato", sans-serif;
+    font-family: "Lato";
     font-weight: 100;
     text-align: center; }
     @media screen and (min-width: 0px) {

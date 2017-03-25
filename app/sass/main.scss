@@ -1,5 +1,11 @@
 /* Fonts */
-@import url( 'https://fonts.googleapis.com/css?family=Lato:100, 400|Roboto');
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 100;
+    src: url('../fonts/Lato/Lato-Hairline.ttf')
+}
+
 /* Other files */
 @import 'variables';
 @import 'mixins';
