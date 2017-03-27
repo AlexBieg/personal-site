@@ -4,44 +4,33 @@
             "title": "Location Tagger",
             "desc": "Tags locations via a phone",
             "link": "https://github.com/AlexBieg/LocationTagger",
-            "img": "http://www.clipartkid.com/images/24/clipart-map-pin-clipart-panda-free-clipart-images-QwCwRn-clipart.png",
+            "img": "location-tagger.png",
             "technologies": [
-                "android",
-                "google maps api",
-                "firebase",
-                "augmented reality"
+                "Android",
+                "Google Maps API",
+                "Firebase",
+                "Augmented reality"
             ]
         },
         {
-            "title": "Location Tagger",
-            "desc": "Tags locations via a phone",
-            "link": "https://github.com/AlexBieg/LocationTagger",
-            "img": "http://www.clipartkid.com/images/24/clipart-map-pin-clipart-panda-free-clipart-images-QwCwRn-clipart.png",
+            "title": "Auto Lights",
+            "desc": "Automatically turns Phillips Hue lights on when a person enters a room.",
+            "link": "https://github.com/AlexBieg/auto-lights",
+            "img": "auto-lights.jpg",
             "technologies": [
-                "android",
-                "google maps api"
+                "Python",
+                "Phillips Hue API",
+                "Image Proccessing (OpenCV)"
             ]
         },{
-            "title": "Location Tagger",
-            "desc": "Tags locations via a phone",
-            "link": "https://github.com/AlexBieg/LocationTagger",
-            "img": "http://www.clipartkid.com/images/24/clipart-map-pin-clipart-panda-free-clipart-images-QwCwRn-clipart.png",
+            "title": "Spotify Roadtrip",
+            "desc": "Builds a Spotify playlist for a roadtrip",
+            "link": "https://github.com/AlexBieg/Spoogle",
+            "img": "spoogle.jpg",
             "technologies": [
-                "android",
-                "google maps api",
-                "firebase",
-                "augmented reality"
-            ]
-        },{
-            "title": "Location Tagger",
-            "desc": "Tags locations via a phone",
-            "link": "https://github.com/AlexBieg/LocationTagger",
-            "img": "http://www.clipartkid.com/images/24/clipart-map-pin-clipart-panda-free-clipart-images-QwCwRn-clipart.png",
-            "technologies": [
-                "android",
-                "google maps api",
-                "firebase",
-                "augmented reality"
+                "AngularJS",
+                "Google Maps API",
+                "Spotify API"
             ]
         }
     ]

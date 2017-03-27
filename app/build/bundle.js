@@ -86,6 +86,8 @@ $(document).ready(function() {
     //set up
     buildCharts();
     displayProjects();
+    update();
+    $(window).resize(update);
 });
 
 function buildCharts() {
@@ -99,6 +101,22 @@ function displayProjects() {
     $.getJSON(apiBaseUrl + "GetProjects", function(resp) {
         showProjects(resp.projects);
     });
+}
+
+function fixProjectSizes() {
+    setTimeout(function() {
+        var max = 0;
+        $('.project').height('inherit');
+        $('.project').each(function(index, elem) {
+            var $elem = $(elem);
+            max = Math.max(max, $elem.outerHeight());
+        });
+        $('.project').outerHeight(max);
+    }, 100);
+}
+
+function update() {
+    fixProjectSizes();
 }
 
 function showProjects(projects) {
@@ -123,13 +141,14 @@ function showProjects(projects) {
 
         var img = $('<img>');
         img.addClass("circle");
-        img.attr('src', projects[i].img);
+        img.attr('src', "img/" + projects[i].img);
         newProject.append(img);
 
         var ul = $('<ul>');
         for (var j = 0; j < projects[i].technologies.length; j++) {
             ul.append($('<li>').text(projects[i].technologies[j]));
         }
+
         newProject.append(ul);
 
         link.append(newProject);
@@ -138,6 +157,7 @@ function showProjects(projects) {
 
         projectsDiv.append(projectContainer);
     }
+    update();
 }
 
 },{"../data/chart-data.json":1,"./chart-handler.js":2,"jquery":52,"jquery-match-height":51}],4:[function(require,module,exports){

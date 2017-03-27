@@ -25,7 +25,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: #1062b4;
+  background: rgba(16, 98, 180, 0.5);
   -webkit-transform: scaleY(0);
   transform: scaleY(0);
   -webkit-transform-origin: 50% 0;
@@ -87,7 +87,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: #1062b4;
+  background: rgba(16, 98, 180, 0.5);
   -webkit-transform: scaleY(0);
   transform: scaleY(0);
   -webkit-transform-origin: 50% 0;
@@ -202,6 +202,8 @@ a {
       /*@include pic-width($project-picture-widths);*/
       background-color: white;
       width: 100%; }
+  .project-container p {
+    min-height: 50px; }
 
 
 /* Colors */
