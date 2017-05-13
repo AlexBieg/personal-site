@@ -3,6 +3,8 @@ var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
+var spawn = require('child_process').spawn;
+var node;
 
 gulp.task('sass', function() {
     return gulp.src('./app/sass/**/*.scss')
@@ -23,4 +25,14 @@ gulp.task('browserify', function() {
         .pipe(gulp.dest('./app/build/'));
 });
 
-gulp.task('default', ['sass', 'browserify', 'watch']);
+gulp.task('server', function() {
+  if (node) node.kill();
+  node = spawn('node', ['server.js'], {stdio: 'inherit'});
+  node.on('close', function (code) {
+    if (code === 8) {
+      gulp.log('Error detected, waiting for changes...');
+    }
+  });
+});
+
+gulp.task('default', ['sass', 'browserify', 'watch', 'server']);
