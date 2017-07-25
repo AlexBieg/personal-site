@@ -191,19 +191,20 @@ a {
 .chart-container h3 {
   text-align: center; }
 
-.project-container {
-  margin-bottom: 2rem; }
-  .project-container .project {
+.projects {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap; }
+  .projects .project {
+    flex: 1;
     color: white;
     background-color: #838383;
     text-align: center;
-    padding: 1rem; }
-    .project-container .project img {
-      /*@include pic-width($project-picture-widths);*/
+    padding: 1rem;
+    margin: 1rem; }
+    .projects .project img {
       background-color: white;
       width: 100%; }
-  .project-container p {
-    min-height: 50px; }
 
 
 /* Colors */

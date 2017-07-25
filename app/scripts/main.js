@@ -16,8 +16,6 @@ $(document).ready(function() {
     //set up
     buildCharts();
     displayProjects();
-    update();
-    $(window).resize(update);
 });
 
 function buildCharts() {
@@ -33,33 +31,16 @@ function displayProjects() {
     });
 }
 
-function fixProjectSizes() {
-    setTimeout(function() {
-        var max = 0;
-        $('.project').height('inherit');
-        $('.project').each(function(index, elem) {
-            var $elem = $(elem);
-            max = Math.max(max, $elem.outerHeight());
-        });
-        $('.project').outerHeight(max);
-    }, 100);
-}
-
-function update() {
-    fixProjectSizes();
-}
-
 function showProjects(projects) {
     var projectsDiv = $(".projects");
     for (var i = 0; i < projects.length; i++) {
-        var projectContainer = $('<div>');
-        projectContainer.addClass('project-container col sm12 m6 l4');
-
         var newProject = $("<div>");
         newProject.addClass("project hvr-bounce-to-bottom");
 
-        var link = $('<a>');
-        link.attr('href', projects[i].link);
+        var img = $('<img>');
+        img.addClass("circle");
+        img.attr('src', "img/" + projects[i].img);
+        newProject.append(img);
 
         var title = $('<h4>');
         title.text(projects[i].title);
@@ -69,11 +50,6 @@ function showProjects(projects) {
         desc.text(projects[i].desc);
         newProject.append(desc);
 
-        var img = $('<img>');
-        img.addClass("circle");
-        img.attr('src', "img/" + projects[i].img);
-        newProject.append(img);
-
         var ul = $('<ul>');
         for (var j = 0; j < projects[i].technologies.length; j++) {
             ul.append($('<li>').text(projects[i].technologies[j]));
@@ -81,11 +57,11 @@ function showProjects(projects) {
 
         newProject.append(ul);
 
+        var link = $('<a>');
+        link.attr('href', projects[i].link);
+
         link.append(newProject);
 
-        projectContainer.append(link);
-
-        projectsDiv.append(projectContainer);
+        projectsDiv.append(newProject);
     }
-    update();
 }

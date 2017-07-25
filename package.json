@@ -8,7 +8,8 @@
     "npm": "4.1.1"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "gulp"
   },
   "repository": {
     "type": "git",

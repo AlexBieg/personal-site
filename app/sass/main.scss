@@ -62,26 +62,30 @@ a {
         background-color: $background-color;
     }
 }
+
 .chart-container {
     h3 {
         text-align: center;
     }
 }
-.project-container {
-    margin-bottom: 2rem;
+
+.projects {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+
     .project {
+        flex: 1;
         color: white;
         background-color: $medium-gray;
         text-align: center;
         padding: 1rem;
+        margin: 1rem;
+
         img {
-            /*@include pic-width($project-picture-widths);*/
             background-color: white;
             width: 100%;
         }
     }
-
-    p {
-        min-height: 50px;
-    }
 }
+
