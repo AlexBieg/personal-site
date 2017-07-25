@@ -212,6 +212,10 @@ a {
 .error {
   color: #EE4A39; }
 
+.preloader-wrapper {
+  float: right;
+  display: none; }
+
 
 /* Colors */
 /* Fade Percentage */

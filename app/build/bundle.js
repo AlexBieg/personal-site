@@ -133,16 +133,13 @@ function setHandlers() {
             body: $("#body").val()
         };
 
-        $.ajax({
-            url: apiBaseUrl + "SendEmail",
-            type: 'post',
-            dataType: 'json',
-            success: function (resp) {
-                console.log(resp);
-            },
-            data: data
-        }).then(function (resp) {
+        $(".preloader-wrapper").show();
+
+        $.post(apiBaseUrl + "SendEmail", data, function (resp) {
             console.log(resp);
+            $("#email-form")[0].reset();
+            $(".preloader-wrapper").hide();
+            $(".submit-email").prop("disabled", "disabled");
         });
     });
 
