@@ -201,10 +201,17 @@ a {
     background-color: #838383;
     text-align: center;
     padding: 1rem;
-    margin: 1rem; }
+    margin: 1rem;
+    min-width: 200px; }
+    .projects .project:hover {
+      cursor: pointer; }
     .projects .project img {
       background-color: white;
       width: 100%; }
+    .projects .project p {
+      font-weight: bold; }
+    .projects .project ul {
+      font-weight: lighter; }
 
 #email-form input, #email-form textarea {
   margin-bottom: 5px; }

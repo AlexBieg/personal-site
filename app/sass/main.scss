@@ -15,9 +15,11 @@ html {
     background-color: $background-color;
     color: $main-text-color;
 }
+
 a {
     color: inherit;
 }
+
 .header {
     background: $notify-color;
     background: -webkit-linear-gradient($medium-gray, $notify-color $headerFadePercent, $background-color);
@@ -42,6 +44,7 @@ a {
         text-align: center;
     }
 }
+
 .main {
     h2 {
         @include font-size($sub-header-font-sizes);
@@ -81,10 +84,23 @@ a {
         text-align: center;
         padding: 1rem;
         margin: 1rem;
+        min-width: 200px;
+
+        &:hover {
+            cursor: pointer;
+        }
 
         img {
             background-color: white;
             width: 100%;
+        }
+
+        p {
+            font-weight: bold;
+        }
+
+        ul {
+            font-weight: lighter;
         }
     }
 }

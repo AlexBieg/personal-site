@@ -22,7 +22,8 @@
                 "Phillips Hue API",
                 "Image Proccessing (OpenCV)"
             ]
-        },{
+        },
+        {
             "title": "Spotify Roadtrip",
             "desc": "Builds a Spotify playlist for a roadtrip",
             "link": "https://github.com/AlexBieg/Spoogle",
@@ -31,6 +32,29 @@
                 "AngularJS",
                 "Google Maps API",
                 "Spotify API"
+            ]
+        },
+        {
+            "title": "Argos",
+            "desc": "The Argos predictive IoT system",
+            "link": "https://github.com/TeamArgos/argos",
+            "img": "argos.png",
+            "technologies": [
+                "Android",
+                "NodeJS",
+                "Machine Learning",
+                "IoT"
+            ]
+        },
+        {
+            "title": "SimPac AI",
+            "desc": "An AI that plays a simplified version of Pac-Man using Q-Learning and A*",
+            "link": "https://github.com/AlexBieg/SimPacAI",
+            "img": "pacman.png",
+            "technologies": [
+                "Python",
+                "Q-Learning",
+                "A*"
             ]
         }
     ]

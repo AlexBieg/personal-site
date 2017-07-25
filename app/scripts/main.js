@@ -1,16 +1,16 @@
 $ = JQuery = require('jquery');
 const validation = require("jquery-validation");
 require('jquery-match-height');
-var ChartHandler = require('./chart-handler.js');
+const ChartHandler = require('./chart-handler.js');
 
 // Json Requires
-var chartData = require('../data/chart-data.json');
+const chartData = require('../data/chart-data.json');
 
 
 //========================
 // Constants
-//=======================
-var apiBaseUrl = location.protocol + '//' + location.host + '/api/';
+//========================
+const apiBaseUrl = location.protocol + '//' + location.host + '/api/';
 
 
 $(document).ready(function () {
@@ -21,6 +21,9 @@ $(document).ready(function () {
     validateForms();
 });
 
+/**
+ * Set up form validation
+ */
 function validateForms() {
     $("#email-form").validate({
         rules: {
@@ -44,7 +47,7 @@ function validateForms() {
         },
         errorElement: 'div',
         errorPlacement: function (error, element) {
-            var placement = $(element).data('error');
+            let placement = $(element).data('error');
             if (placement) {
                 $(placement).append(error)
             } else {
@@ -54,9 +57,13 @@ function validateForms() {
     });
 }
 
+/**
+ * Sets up all of the handlers for the page
+ */
 function setHandlers() {
+    // Email submit 
     $(".submit-email").click(function () {
-        var data = {
+        let data = {
             email: $("#email").val(),
             name: $("#first_name").val() + " " + $("#last_name").val(),
             subject: $("#subject").val(),
@@ -73,10 +80,14 @@ function setHandlers() {
         });
     });
 
+    // Button disable checks
     $("#email-form input").on("keyup blur", checkButton);
     $("#email-form textarea").on("keyup blur", checkButton);
 }
 
+/**
+ * Check if the button should be disabled or not
+ */
 function checkButton() {
     if ($("#email-form").valid()) {
         $(".submit-email").prop("disabled", false);
@@ -85,49 +96,59 @@ function checkButton() {
     }
 }
 
+/**
+ * Builds all of the charts
+ */
 function buildCharts() {
-    var chart = new ChartHandler($(".skill-chart"), chartData.data[0]);
+    let chart = new ChartHandler($(".skill-chart"), chartData.data[0]);
     chart.buildChart();
-    var chart2 = new ChartHandler($(".tech-chart"), chartData.data[1]);
+    let chart2 = new ChartHandler($(".tech-chart"), chartData.data[1]);
     chart2.buildChart();
 }
 
+/**
+ * Gets the projects from the api
+ */
 function displayProjects() {
     $.getJSON(apiBaseUrl + "GetProjects", function (resp) {
         showProjects(resp.projects);
     });
 }
 
+/**
+ * Adds the projects to the page
+ * @param {Array} projects 
+ */
 function showProjects(projects) {
-    var projectsDiv = $(".projects");
-    for (var i = 0; i < projects.length; i++) {
-        var newProject = $("<div>");
+    let projectsDiv = $(".projects");
+    for (let i = 0; i < projects.length; i++) {
+        let link = $('<a>');
+        link.attr('href', projects[i].link);
+
+        let newProject = $("<div>");
         newProject.addClass("project hvr-bounce-to-bottom");
 
-        var img = $('<img>');
+        let img = $('<img>');
         img.addClass("circle");
         img.attr('src', "img/" + projects[i].img);
-        newProject.append(img);
+        link.append(img);
 
-        var title = $('<h4>');
+        let title = $('<h4>');
         title.text(projects[i].title);
-        newProject.append(title);
+        link.append(title);
 
-        var desc = $('<p>');
+        let desc = $('<p>');
         desc.text(projects[i].desc);
-        newProject.append(desc);
+        link.append(desc);
 
-        var ul = $('<ul>');
-        for (var j = 0; j < projects[i].technologies.length; j++) {
+        let ul = $('<ul>');
+        for (let j = 0; j < projects[i].technologies.length; j++) {
             ul.append($('<li>').text(projects[i].technologies[j]));
         }
 
-        newProject.append(ul);
+        link.append(ul);
 
-        var link = $('<a>');
-        link.attr('href', projects[i].link);
-
-        link.append(newProject);
+        newProject.append(link);
 
         projectsDiv.append(newProject);
     }
