@@ -89,3 +89,12 @@ a {
     }
 }
 
+#email-form {
+    input, textarea {
+        margin-bottom: 5px;
+    }
+}
+
+.error {
+    color: $notify-color;
+}

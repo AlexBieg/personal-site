@@ -206,6 +206,12 @@ a {
       background-color: white;
       width: 100%; }
 
+#email-form input, #email-form textarea {
+  margin-bottom: 5px; }
+
+.error {
+  color: #EE4A39; }
+
 
 /* Colors */
 /* Fade Percentage */

@@ -1,4 +1,5 @@
 $ = JQuery = require('jquery');
+const validation = require("jquery-validation");
 require('jquery-match-height');
 var ChartHandler = require('./chart-handler.js');
 
@@ -12,11 +13,80 @@ var chartData = require('../data/chart-data.json');
 var apiBaseUrl = location.protocol + '//' + location.host + '/api/';
 
 
-$(document).ready(function() {
+$(document).ready(function () {
     //set up
     buildCharts();
     displayProjects();
+    setHandlers();
+    validateForms();
 });
+
+function validateForms() {
+    $("#email-form").validate({
+        rules: {
+            first_name: {
+                required: true
+            },
+            last_name: {
+                required: true
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            subject: {
+                required: true
+            },
+            body: {
+                required: true,
+                minlength: 10
+            }
+        },
+        errorElement: 'div',
+        errorPlacement: function (error, element) {
+            var placement = $(element).data('error');
+            if (placement) {
+                $(placement).append(error)
+            } else {
+                error.insertAfter(element);
+            }
+        }
+    });
+}
+
+function setHandlers() {
+    $(".submit-email").click(function () {
+        var data = {
+            email: $("#email").val(),
+            name: $("#first_name").val() + " " + $("#last_name").val(),
+            subject: $("#subject").val(),
+            body: $("#body").val()
+        };
+
+        $.ajax({
+            url: apiBaseUrl + "SendEmail",
+            type: 'post',
+            dataType: 'json',
+            success: function (resp) {
+                console.log(resp);
+            },
+            data: data
+        }).then(function (resp) {
+            console.log(resp);
+        });
+    });
+
+    $("#email-form input").on("keyup blur", checkButton);
+    $("#email-form textarea").on("keyup blur", checkButton);
+}
+
+function checkButton() {
+    if ($("#email-form").valid()) {
+        $(".submit-email").prop("disabled", false);
+    } else {
+        $(".submit-email").prop("disabled", "disabled");
+    }
+}
 
 function buildCharts() {
     var chart = new ChartHandler($(".skill-chart"), chartData.data[0]);
@@ -26,7 +96,7 @@ function buildCharts() {
 }
 
 function displayProjects() {
-    $.getJSON(apiBaseUrl + "GetProjects", function(resp) {
+    $.getJSON(apiBaseUrl + "GetProjects", function (resp) {
         showProjects(resp.projects);
     });
 }

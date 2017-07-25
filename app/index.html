@@ -32,19 +32,24 @@
         <div>
             <div class="container">
                 <h2>
-                        Who I Am
+                    Who I Am
                 </h2>
                 <p>
-                    I grew up in a small farming town in Oregon. While I lived there I loved using technology, but had never considered a career in it. When I graduated high school I came to UW originally planning to be a physics major. As it turns out I do not like physics
-                    nearly as much as I thought. Luckily I took a programming class and fell in love.
+                    I grew up in a small farming town in Oregon. While I lived there I loved using technology, but had never considered a career
+                    in it. When I graduated high school I came to UW originally planning to be a physics major. As it turns
+                    out I do not like physics nearly as much as I thought. Luckily I took a programming class and fell in
+                    love.
                 </p>
                 <p>
-                    Since then I have been working toward becoming the best developer I can be. I have been lucky to work with some amazing people over the course of my career and through them I have learned so much.
+                    Since then I have been working toward becoming the best developer I can be. I have been lucky to work with some amazing people
+                    over the course of my career and through them I have learned so much.
                 </p>
                 <p>
-                    I have always loved using, understanding, and, most importantly, changing technology. There are few things that make me as happy as being able to learn and build new technology, because it embodies many of the qualities that I care about: thoughtfulness,
-                    dedication, persistence, and intuitiveness. In whatever I am doing I try to bring these qualities to the table to make the product, no matter what it is, the best it can be. I hope to use my skills to work with an amazing team as a
-                    software developer.
+                    I have always loved using, understanding, and, most importantly, changing technology. There are few things that make me as
+                    happy as being able to learn and build new technology, because it embodies many of the qualities that
+                    I care about: thoughtfulness, dedication, persistence, and intuitiveness. In whatever I am doing I try
+                    to bring these qualities to the table to make the product, no matter what it is, the best it can be.
+                    I hope to use my skills to work with an amazing team as a software developer.
                 </p>
             </div>
         </div>
@@ -81,19 +86,34 @@
         <div class="contact">
             <div class="container">
                 <h2>
-                        Contact Me
-                    </h2>
-                <p>
-                    Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Nulla porttitor accumsan tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet
-                    aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat. Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci porta dapibus. Vestibulum ante ipsum primis in faucibus orci
-                    luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit. Nulla porttitor accumsan tincidunt. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque
-                    in ipsum id orci porta dapibus. Cras ultricies ligula sed magna dictum porta. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis
-                    in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed,
-                    convallis at tellus. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Praesent sapien
-                    massa, convallis a pellentesque nec, egestas non nisi. Donec rutrum congue leo eget malesuada. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada.
-                    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
-                </p>
+                    Contact Me
+                </h2>
+
+                <form id="email-form">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input type="text" name="first_name" id="first_name" />
+                            <label for="first_name">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="text" name="last_name" id="last_name" />
+                            <label for="last_name">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" name="email" id="email" />
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" name="subject" id="subject" />
+                        <label for="subject">Subject</label>
+                    </div>
+                    <div class="input-field">
+                        <textarea class="materialize-textarea" id="body" name="body"></textarea>
+                        <label for="body">Email Body</label>
+                    </div>
+                    <button disabled="disabled" type="button" class="btn submit-email" name="submit">Send Email</button>
+                </form>
             </div>
         </div>
     </div>
