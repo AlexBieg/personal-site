@@ -1,23 +1,48 @@
-var nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
+const mg = require('nodemailer-mailgun-transport');
+const fs = require('fs');
+const homeDir = require("os").homedir();
+const path = require("path");
 
 function sendEmail(message) {
     return new Promise(function (resolve, reject) {
         console.log("starting email");
-        var transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: 'alexbiegspersonalsite@gmail.com',
-                pass: '47nq2LJmt4GM'
+        console.log(homeDir);
+
+        let auth = {};
+        if (process.env.mail_gun_api_key && process.env.mail_gun_domain) {
+            auth.auth = {
+                api_key: process.env.mail_gun_api_key,
+                domain: process.env.mail_gun_api_key
             }
-        });
+        } else {
+            try {
+                let jsonString = fs.readFileSync(path.join(homeDir, "personal-site-config.json"));
+                let config = JSON.parse(jsonString);
+
+                console.log(config);
+
+                auth.auth = {
+                    api_key: config.api_key,
+                    domain: config.domain
+                }
+            } catch (e) {
+                console.log(e);
+                reject(e);
+            }
+
+        }
+
+
+        var transporter = nodemailer.createTransport(mg(auth));
 
         var html = `
-            <h1>` + message.name + ` says:</h1>
+            <h2>` + message.name + ` says:</h2>
             <p>` + message.body + `</p>
-            <p> To respond click <a href="mailto:` + message.email + `">` + message.email + `</a></p>
         `;
 
         var mailOptions = {
+            from: message.email,
             to: "alexbieg95@gmail.com",
             subject: message.subject,
             html: html
