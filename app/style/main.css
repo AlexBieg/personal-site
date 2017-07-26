@@ -194,7 +194,8 @@ a {
 .projects {
   display: flex;
   flex-flow: row;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  justify-content: center; }
   .projects .project {
     flex: 1;
     color: white;
@@ -202,7 +203,8 @@ a {
     text-align: center;
     padding: 1rem;
     margin: 1rem;
-    min-width: 200px; }
+    min-width: 200px;
+    max-width: 300px; }
     .projects .project:hover {
       cursor: pointer; }
     .projects .project img {
