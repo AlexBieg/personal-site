@@ -13,7 +13,7 @@ function sendEmail(message) {
         if (process.env.mail_gun_api_key && process.env.mail_gun_domain) {
             auth.auth = {
                 api_key: process.env.mail_gun_api_key,
-                domain: process.env.mail_gun_api_key
+                domain: process.env.mail_gun_domain
             }
         } else {
             try {
