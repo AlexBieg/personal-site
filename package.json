@@ -12,7 +12,7 @@
     "dev": "gulp",
     "build": "gulp sass && gulp browserify",
     "deploy": "npm run build && npm run add-commit && git push origin master && git push heroku master",
-    "add-commit": "gac .js .css"
+    "add-commit": "gac *"
   },
   "repository": {
     "type": "git",
