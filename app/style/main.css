@@ -219,6 +219,9 @@ a {
 .error {
   color: #EE4A39; }
 
+.success {
+  color: #4CAF50; }
+
 .preloader-wrapper {
   float: right;
   display: none; }

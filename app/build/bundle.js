@@ -143,10 +143,15 @@ function setHandlers() {
         $(".preloader-wrapper").show();
 
         $.post(apiBaseUrl + "SendEmail", data, function (resp) {
-            console.log(resp);
-            $("#email-form")[0].reset();
             $(".preloader-wrapper").hide();
+            $("#email-form")[0].reset();
             $(".submit-email").prop("disabled", "disabled");
+            $(".email-success").text("Your email was sent!")
+            $(".email-error").text("")
+        }).fail(function (err) {
+            $(".preloader-wrapper").hide();
+            $(".email-error").text("Something went wrong. Please try again later.")
+            $(".email-success").text("");
         });
     });
 
