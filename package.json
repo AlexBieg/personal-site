@@ -11,7 +11,7 @@
     "start": "node server.js",
     "dev": "gulp",
     "build": "gulp build",
-    "deploy": "npm run build && git checkout deploy && git merge master && npm run add-commit && git push origin deploy",
+    "deploy": "npm run build && git checkout deploy && git merge master && npm run add-commit && git push origin deploy && git checkout master",
     "add-commit": "gac * \"Automated Commit\""
   },
   "repository": {
