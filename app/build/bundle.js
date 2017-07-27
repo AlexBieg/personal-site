@@ -76,12 +76,10 @@ const ChartHandler = require('./chart-handler.js');
 // Json Requires
 const chartData = require('../data/chart-data.json');
 
-
 //========================
 // Constants
 //========================
 const apiBaseUrl = location.protocol + '//' + location.host + '/api/';
-
 
 $(document).ready(function () {
     //set up
