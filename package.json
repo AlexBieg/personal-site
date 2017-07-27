@@ -11,8 +11,7 @@
     "start": "node server.js",
     "dev": "gulp",
     "build": "gulp build",
-    "deploy": "deploy-to-git",
-    "deploy2": "npm run build && git checkout deploy && git merge master && npm run add-commit && git push origin deploy && git checkout master",
+    "deploy": "npm run build && npm run add-commit && git push origin master:deploy",
     "add-commit": "gac * \"Automated Commit\""
   },
   "repository": {
@@ -39,7 +38,6 @@
   "devDependencies": {
     "browserify": "^14.1.0",
     "browserify-shim": "^3.8.13",
-    "deploy-to-git": "^0.1.5",
     "git-add-and-commit": "^1.2.9",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
@@ -48,18 +46,5 @@
     "gulp-nodemon": "^2.2.1",
     "gulp-sass": "^3.1.0",
     "vinyl-source-stream": "^1.1.0"
-  },
-  "congig": {
-    "deployToGit": {
-      "repository": "git@github.com:AlexBieg/personal-site.git",
-      "branch": "deploy",
-      "folder": ".",
-      "script": "npm run build",
-      "commit": "Automatic Commit",
-      "user": {
-          "email": "alexbieg95@gmail.com",
-          "name": "Alex Bieg"
-      }
-    }
   }
 }
