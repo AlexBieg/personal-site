@@ -31,7 +31,7 @@ function sendEmail(message) {
             html: html
         };
 
-        console.log("about to send email");
+        console.log(auth);
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
                 reject(error);
