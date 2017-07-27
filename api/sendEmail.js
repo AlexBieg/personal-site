@@ -6,9 +6,6 @@ const path = require("path");
 
 function sendEmail(message) {
     return new Promise(function (resolve, reject) {
-        console.log("starting email");
-        console.log(homeDir);
-
         let auth = {};
         if (process.env.mail_gun_api_key && process.env.mail_gun_domain) {
             auth.auth = {
@@ -30,9 +27,7 @@ function sendEmail(message) {
                 console.log(e);
                 reject(e);
             }
-
         }
-
 
         var transporter = nodemailer.createTransport(mg(auth));
 
@@ -58,7 +53,6 @@ function sendEmail(message) {
             }
         });
     });
-
 }
 
 module.exports = sendEmail;
