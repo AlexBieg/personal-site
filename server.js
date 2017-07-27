@@ -26,7 +26,8 @@ app.get('/api/GetProjects', function(req, res) {
 app.post('/api/SendEmail', function(req, res) {
     sendEmail(req.body).then(function() {
         res.sendStatus(200);
-    }, function(error) {
+    }).catch(function(err) {
+        console.log(err);
         res.sendStatus(500);
     });
 });
