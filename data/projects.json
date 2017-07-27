@@ -2,7 +2,7 @@
     "projects": [
         {
             "title": "Location Tagger",
-            "desc": "Tags locations via a phone",
+            "desc": "Tag event locations via a phone. Visualize nearby events in augmented reality.",
             "link": "https://github.com/AlexBieg/LocationTagger",
             "img": "location-tagger.png",
             "technologies": [

@@ -207,13 +207,13 @@ a {
     max-width: 300px; }
     .projects .project:hover {
       cursor: pointer; }
+    .projects .project h4, .projects .project h5 {
+      font-weight: 100; }
     .projects .project img {
       background-color: white;
       width: 100%; }
-    .projects .project p {
-      font-weight: bold; }
     .projects .project ul {
-      font-weight: lighter; }
+      color: lightgray; }
 
 #email-form input, #email-form textarea {
   margin-bottom: 5px; }

@@ -131,11 +131,6 @@ function showProjects(projects) {
         let newProject = $("<div>");
         newProject.addClass("project hvr-bounce-to-bottom");
 
-        let img = $('<img>');
-        img.addClass("circle");
-        img.attr('src', "img/" + projects[i].img);
-        link.append(img);
-
         let title = $('<h4>');
         title.text(projects[i].title);
         link.append(title);
@@ -143,6 +138,8 @@ function showProjects(projects) {
         let desc = $('<p>');
         desc.text(projects[i].desc);
         link.append(desc);
+
+        link.append($('<hr />'));
 
         let ul = $('<ul>');
         for (let j = 0; j < projects[i].technologies.length; j++) {
