@@ -8,13 +8,13 @@ function sendEmail(message) {
     return new Promise(function (resolve, reject) {
         let auth = {};
 
-        try {
+        if ( process.env.mail_gun_api_key && process.env.mail_gun_domain ) {
             auth.auth = {
                 api_key: process.env.mail_gun_api_key,
                 domain: process.env.mail_gun_domain
             }
-        } catch (e){
-            reject(e);
+        } else {
+            reject("Mailgun env variables are undefined");
         }
 
         var transporter = nodemailer.createTransport(mg(auth));
