@@ -1,0 +1,23 @@
+{
+  "name": "personal-site",
+  "scripts": {
+  },
+  "env": {
+    "mail_gun_api_key": {
+      "required": true
+    },
+    "mail_gun_domain": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
