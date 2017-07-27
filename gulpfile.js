@@ -1,38 +1,50 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var concat = require('gulp-concat');
-var browserify = require('browserify');
-var source = require('vinyl-source-stream');
-var spawn = require('child_process').spawn;
-var node;
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const concat = require('gulp-concat');
+const nodemon = require('gulp-nodemon');
+const livereload = require('gulp-livereload');
+const browserify = require('browserify');
+const source = require('vinyl-source-stream');
 
-gulp.task('sass', function() {
-    return gulp.src('./app/sass/**/*.scss')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(concat('main.css'))
-        .pipe(gulp.dest('./app/style'));
+gulp.task('sass', function () {
+  return gulp.src('./app/sass/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(concat('bundle.css'))
+    .pipe(gulp.dest('./app/build'));
 });
 
-gulp.task('watch', function() {
-    gulp.watch('./app/sass/**/*.scss', ['sass']);
-    gulp.watch('./app/scripts/**/*.js', ['browserify']);
+gulp.task('watch', ['build'], function () {
+  livereload.listen();
+
+  gulp.watch('./app/sass/**/*.scss', ['sass', 'livereload']);
+  gulp.watch('./app/scripts/**/*.js', ['browserify', 'livereload']);
+
+  gulp.watch('./app/**/*.html', ['livereload']);
+  gulp.watch('./app/img/**/*', ['livereload']);
+  gulp.watch('./app/data/**/*', ['livereload']);
+  gulp.watch('./app/fonts/**/*', ['livereload']);
 });
 
-gulp.task('browserify', function() {
-    return browserify('./app/scripts/main.js')
-        .bundle()
-        .pipe(source('bundle.js'))
-        .pipe(gulp.dest('./app/build/'));
+gulp.task('livereload', ['sass', 'browserify', 'build'], function() {
+  livereload.reload();
 });
 
-gulp.task('server', function() {
-  if (node) node.kill();
-  node = spawn('node', ['server.js'], {stdio: 'inherit'});
-  node.on('close', function (code) {
-    if (code === 8) {
-      gulp.log('Error detected, waiting for changes...');
-    }
-  });
+gulp.task('browserify', function () {
+  return browserify('./app/scripts/main.js')
+    .bundle()
+    .pipe(source('bundle.js'))
+    .pipe(gulp.dest('./app/build/'));
 });
 
-gulp.task('default', ['sass', 'browserify', 'watch', 'server']);
+gulp.task('server', ['build', 'watch'], function () {
+  let stream = nodemon({
+    script: 'server.js',
+    ignore: 'app/build/**'
+  })
+
+  stream.on('restart', ['build', 'livereload'])
+});
+
+gulp.task('build', ['sass', 'browserify']);
+
+gulp.task('default', ['build', 'watch', 'server']);

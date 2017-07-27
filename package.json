@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "gulp",
-    "build": "gulp sass && gulp browserify",
+    "build": "gulp build",
     "deploy": "npm run build && npm run add-commit && git push origin master && git push heroku master",
     "add-commit": "gac * \"Automated Commit\""
   },
@@ -41,6 +41,8 @@
     "git-add-and-commit": "^1.2.9",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-nodemon": "^2.2.1",
     "gulp-sass": "^3.1.0",
     "vinyl-source-stream": "^1.1.0"
   }
