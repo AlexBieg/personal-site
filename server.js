@@ -5,8 +5,6 @@ var getProjects = require('./api/getProjects.js');
 var getChartData = require('./api/getChartData.js');
 var sendEmail = require('./api/sendEmail.js');
 
-console.log(process.env.MAIL_GUN_DOMAIN);
-
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname+"/app"));
 app.use( bodyParser.json() );

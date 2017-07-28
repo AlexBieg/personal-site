@@ -2,10 +2,13 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const concat = require('gulp-concat');
 const nodemon = require('gulp-nodemon');
-const env = require('gulp-env');
 const livereload = require('gulp-livereload');
 const browserify = require('browserify');
 const source = require('vinyl-source-stream');
+
+// Set up local .env
+require('dotenv').config();
+
 
 gulp.task('sass', function () {
   return gulp.src('./app/sass/**/*.scss')
@@ -38,11 +41,6 @@ gulp.task('browserify', function () {
 });
 
 gulp.task('server', ['build', 'watch'], function () {
-  env({
-    file: '.env'
-  })
-
-  console.log(process.env.mail_gun_api_key);
   let stream = nodemon({
     script: 'server.js',
     ignore: 'app/build/**'

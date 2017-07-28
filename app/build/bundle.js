@@ -6,6 +6,7 @@ const validation = require("jquery-validation");
 const HttpService = require('./services/http-service.js')
 const ChartHandler = require('./services/chart-handler.js');
 const ProjectsHandler = require('./services/projects-handler.js');
+const EmailHandler = require('./services/email-handler.js');
 
 $(document).ready(function () {
     //set up
@@ -56,32 +57,32 @@ function validateForms() {
  */
 function setHandlers() {
     // Email submit 
-    $(".submit-email").click(function () {
-        let data = {
-            email: $("#email").val(),
-            name: $("#first_name").val() + " " + $("#last_name").val(),
-            subject: $("#subject").val(),
-            body: $("#body").val()
-        };
-
-        $(".preloader-wrapper").show();
-
-        HttpService.sendEmail(data).then(function (resp) {
-            $(".preloader-wrapper").hide();
-            $("#email-form")[0].reset();
-            $(".submit-email").prop("disabled", "disabled");
-            $(".email-success").text("Your email was sent!")
-            $(".email-error").text("")
-        }).catch(function (err) {
-            $(".preloader-wrapper").hide();
-            $(".email-error").text("Something went wrong. Please try again later.")
-            $(".email-success").text("");
-        });
-    });
+    $(".submit-email").click(sendEmail);
 
     // Button disable checks
     $("#email-form input").on("keyup blur", checkButton);
     $("#email-form textarea").on("keyup blur", checkButton);
+}
+
+/**
+ * Sends an email from the form
+ */
+function sendEmail() {
+    let data = {
+        email: $("#email").val(),
+        name: $("#first_name").val() + " " + $("#last_name").val(),
+        subject: $("#subject").val(),
+        body: $("#body").val()
+    };
+
+    let emailHandler = new EmailHandler();
+    emailHandler.sendingEmail();
+
+    HttpService.sendEmail(data).then(function (resp) {
+        emailHandler.emailSucceeded();
+    }).catch(function (err) {
+        emailHandler.emailFailed();
+    });
 }
 
 /**
@@ -120,7 +121,7 @@ function buildProjects() {
         ph.showProjects();
     });
 }
-},{"./services/chart-handler.js":2,"./services/http-service.js":3,"./services/projects-handler.js":4,"jquery":54,"jquery-validation":53}],2:[function(require,module,exports){
+},{"./services/chart-handler.js":2,"./services/email-handler.js":3,"./services/http-service.js":4,"./services/projects-handler.js":5,"jquery":55,"jquery-validation":54}],2:[function(require,module,exports){
 var Chart = require('chart.js');
 
 
@@ -158,7 +159,30 @@ ChartHandler.prototype.buildChart = function() {
 
 module.exports = ChartHandler;
 
-},{"chart.js":5}],3:[function(require,module,exports){
+},{"chart.js":6}],3:[function(require,module,exports){
+function EmailHandler() {}
+
+EmailHandler.prototype.sendingEmail = function () {
+    $(".preloader-wrapper").show();
+}
+
+EmailHandler.prototype.emailFailed = function () {
+    $(".preloader-wrapper").hide();
+    $(".email-error").text("Something went wrong. Please try again later.")
+    $(".email-success").text("");
+}
+
+EmailHandler.prototype.emailSucceeded = function () {
+    $(".preloader-wrapper").hide();
+    $("#email-form")[0].reset();
+    $(".submit-email").prop("disabled", "disabled");
+    $(".email-success").text("Your email was sent!")
+    $(".email-error").text("")
+}
+
+
+module.exports = EmailHandler;
+},{}],4:[function(require,module,exports){
 function HttpService() {
     this.apiBaseUrl = location.protocol + '//' + location.host + '/api/';
 }
@@ -176,7 +200,7 @@ HttpService.prototype.sendEmail = function (data) {
 }
 
 module.exports = new HttpService();
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 
 function ProjectsHandler(container, projects) {
     this.container = container;
@@ -217,7 +241,7 @@ ProjectsHandler.prototype.showProjects = function() {
 }
 
 module.exports = ProjectsHandler;
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 /**
  * @namespace Chart
  */
@@ -283,7 +307,7 @@ if (typeof window !== 'undefined') {
 	window.Chart = Chart;
 }
 
-},{"./charts/Chart.Bar":6,"./charts/Chart.Bubble":7,"./charts/Chart.Doughnut":8,"./charts/Chart.Line":9,"./charts/Chart.PolarArea":10,"./charts/Chart.Radar":11,"./charts/Chart.Scatter":12,"./controllers/controller.bar":13,"./controllers/controller.bubble":14,"./controllers/controller.doughnut":15,"./controllers/controller.line":16,"./controllers/controller.polarArea":17,"./controllers/controller.radar":18,"./core/core.animation":19,"./core/core.canvasHelpers":20,"./core/core.controller":21,"./core/core.datasetController":22,"./core/core.element":23,"./core/core.helpers":24,"./core/core.interaction":25,"./core/core.js":26,"./core/core.layoutService":27,"./core/core.plugin.js":28,"./core/core.scale":29,"./core/core.scaleService":30,"./core/core.ticks.js":31,"./core/core.tooltip":32,"./elements/element.arc":33,"./elements/element.line":34,"./elements/element.point":35,"./elements/element.rectangle":36,"./platforms/platform.js":38,"./plugins/plugin.filler.js":39,"./plugins/plugin.legend.js":40,"./plugins/plugin.title.js":41,"./scales/scale.category":42,"./scales/scale.linear":43,"./scales/scale.linearbase.js":44,"./scales/scale.logarithmic":45,"./scales/scale.radialLinear":46,"./scales/scale.time":47}],6:[function(require,module,exports){
+},{"./charts/Chart.Bar":7,"./charts/Chart.Bubble":8,"./charts/Chart.Doughnut":9,"./charts/Chart.Line":10,"./charts/Chart.PolarArea":11,"./charts/Chart.Radar":12,"./charts/Chart.Scatter":13,"./controllers/controller.bar":14,"./controllers/controller.bubble":15,"./controllers/controller.doughnut":16,"./controllers/controller.line":17,"./controllers/controller.polarArea":18,"./controllers/controller.radar":19,"./core/core.animation":20,"./core/core.canvasHelpers":21,"./core/core.controller":22,"./core/core.datasetController":23,"./core/core.element":24,"./core/core.helpers":25,"./core/core.interaction":26,"./core/core.js":27,"./core/core.layoutService":28,"./core/core.plugin.js":29,"./core/core.scale":30,"./core/core.scaleService":31,"./core/core.ticks.js":32,"./core/core.tooltip":33,"./elements/element.arc":34,"./elements/element.line":35,"./elements/element.point":36,"./elements/element.rectangle":37,"./platforms/platform.js":39,"./plugins/plugin.filler.js":40,"./plugins/plugin.legend.js":41,"./plugins/plugin.title.js":42,"./scales/scale.category":43,"./scales/scale.linear":44,"./scales/scale.linearbase.js":45,"./scales/scale.logarithmic":46,"./scales/scale.radialLinear":47,"./scales/scale.time":48}],7:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -296,7 +320,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -308,7 +332,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -321,7 +345,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -334,7 +358,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -347,7 +371,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -360,7 +384,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -409,7 +433,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -794,7 +818,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -918,7 +942,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -1223,7 +1247,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -1558,7 +1582,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -1783,7 +1807,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -1952,7 +1976,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 /* global window: false */
 'use strict';
 
@@ -2122,7 +2146,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -2274,7 +2298,7 @@ module.exports = function(Chart) {
 	Chart.helpers.canvas = helpers;
 };
 
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -3127,7 +3151,7 @@ module.exports = function(Chart) {
 	Chart.Controller = Chart;
 };
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -3459,7 +3483,7 @@ module.exports = function(Chart) {
 	Chart.DatasetController.extend = helpers.inherits;
 };
 
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 'use strict';
 
 var color = require('chartjs-color');
@@ -3580,7 +3604,7 @@ module.exports = function(Chart) {
 	Chart.Element.extend = helpers.inherits;
 };
 
-},{"chartjs-color":49}],24:[function(require,module,exports){
+},{"chartjs-color":50}],25:[function(require,module,exports){
 /* global window: false */
 /* global document: false */
 'use strict';
@@ -4566,7 +4590,7 @@ module.exports = function(Chart) {
 	helpers.callCallback = helpers.callback;
 };
 
-},{"chartjs-color":49}],25:[function(require,module,exports){
+},{"chartjs-color":50}],26:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -4884,7 +4908,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 'use strict';
 
 module.exports = function() {
@@ -4942,7 +4966,7 @@ module.exports = function() {
 	return Chart;
 };
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -5380,7 +5404,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -5753,7 +5777,7 @@ module.exports = function(Chart) {
 	Chart.PluginBase = Chart.Element.extend({});
 };
 
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -6512,7 +6536,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -6558,7 +6582,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -6768,7 +6792,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],32:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -7708,7 +7732,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -7814,7 +7838,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -7903,7 +7927,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],35:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -8005,7 +8029,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -8215,7 +8239,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 'use strict';
 
 // Chart.Platform implementation for targeting a web browser
@@ -8500,7 +8524,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],38:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 'use strict';
 
 // By default, select the browser (DOM) platform.
@@ -8571,7 +8595,7 @@ module.exports = function(Chart) {
 	Chart.helpers.extend(Chart.platform, implementation(Chart));
 };
 
-},{"./platform.dom.js":37}],39:[function(require,module,exports){
+},{"./platform.dom.js":38}],40:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -8882,7 +8906,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],40:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -9428,7 +9452,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],41:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -9656,7 +9680,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -9790,7 +9814,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],43:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -9982,7 +10006,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],44:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -10090,7 +10114,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],45:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -10338,7 +10362,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -10863,7 +10887,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 /* global window: false */
 'use strict';
 
@@ -11307,7 +11331,7 @@ module.exports = function(Chart) {
 
 };
 
-},{"moment":55}],48:[function(require,module,exports){
+},{"moment":56}],49:[function(require,module,exports){
 /* MIT license */
 var colorNames = require('color-name');
 
@@ -11530,7 +11554,7 @@ for (var name in colorNames) {
    reverseNames[colorNames[name]] = name;
 }
 
-},{"color-name":52}],49:[function(require,module,exports){
+},{"color-name":53}],50:[function(require,module,exports){
 /* MIT license */
 var convert = require('color-convert');
 var string = require('chartjs-color-string');
@@ -12017,7 +12041,7 @@ if (typeof window !== 'undefined') {
 
 module.exports = Color;
 
-},{"chartjs-color-string":48,"color-convert":51}],50:[function(require,module,exports){
+},{"chartjs-color-string":49,"color-convert":52}],51:[function(require,module,exports){
 /* MIT license */
 
 module.exports = {
@@ -12717,7 +12741,7 @@ for (var key in cssKeywords) {
   reverseKeywords[JSON.stringify(cssKeywords[key])] = key;
 }
 
-},{}],51:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 var conversions = require("./conversions");
 
 var convert = function() {
@@ -12810,7 +12834,7 @@ Converter.prototype.getValues = function(space) {
 });
 
 module.exports = convert;
-},{"./conversions":50}],52:[function(require,module,exports){
+},{"./conversions":51}],53:[function(require,module,exports){
 'use strict'
 
 module.exports = {
@@ -12964,7 +12988,7 @@ module.exports = {
 	"yellowgreen": [154, 205, 50]
 };
 
-},{}],53:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 /*!
  * jQuery Validation Plugin v1.16.0
  *
@@ -14539,7 +14563,7 @@ if ( $.ajaxPrefilter ) {
 }
 return $;
 }));
-},{"jquery":54}],54:[function(require,module,exports){
+},{"jquery":55}],55:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.2.1
  * https://jquery.com/
@@ -24794,7 +24818,7 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{}],55:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 //! moment.js
 //! version : 2.18.1
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors

@@ -37,10 +37,10 @@
   "devDependencies": {
     "browserify": "^14.1.0",
     "browserify-shim": "^3.8.13",
+    "dotenv": "^4.0.0",
     "git-add-and-commit": "^1.2.9",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
-    "gulp-env": "^0.4.0",
     "gulp-livereload": "^3.8.1",
     "gulp-nodemon": "^2.2.1",
     "gulp-sass": "^3.1.0",

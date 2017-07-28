@@ -5,6 +5,7 @@ const validation = require("jquery-validation");
 const HttpService = require('./services/http-service.js')
 const ChartHandler = require('./services/chart-handler.js');
 const ProjectsHandler = require('./services/projects-handler.js');
+const EmailHandler = require('./services/email-handler.js');
 
 $(document).ready(function () {
     //set up
@@ -55,32 +56,32 @@ function validateForms() {
  */
 function setHandlers() {
     // Email submit 
-    $(".submit-email").click(function () {
-        let data = {
-            email: $("#email").val(),
-            name: $("#first_name").val() + " " + $("#last_name").val(),
-            subject: $("#subject").val(),
-            body: $("#body").val()
-        };
-
-        $(".preloader-wrapper").show();
-
-        HttpService.sendEmail(data).then(function (resp) {
-            $(".preloader-wrapper").hide();
-            $("#email-form")[0].reset();
-            $(".submit-email").prop("disabled", "disabled");
-            $(".email-success").text("Your email was sent!")
-            $(".email-error").text("")
-        }).catch(function (err) {
-            $(".preloader-wrapper").hide();
-            $(".email-error").text("Something went wrong. Please try again later.")
-            $(".email-success").text("");
-        });
-    });
+    $(".submit-email").click(sendEmail);
 
     // Button disable checks
     $("#email-form input").on("keyup blur", checkButton);
     $("#email-form textarea").on("keyup blur", checkButton);
+}
+
+/**
+ * Sends an email from the form
+ */
+function sendEmail() {
+    let data = {
+        email: $("#email").val(),
+        name: $("#first_name").val() + " " + $("#last_name").val(),
+        subject: $("#subject").val(),
+        body: $("#body").val()
+    };
+
+    let emailHandler = new EmailHandler();
+    emailHandler.sendingEmail();
+
+    HttpService.sendEmail(data).then(function (resp) {
+        emailHandler.emailSucceeded();
+    }).catch(function (err) {
+        emailHandler.emailFailed();
+    });
 }
 
 /**
