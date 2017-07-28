@@ -42,6 +42,7 @@ gulp.task('server', ['build', 'watch'], function () {
     file: '.env'
   })
 
+  console.log(process.env.mail_gun_api_key);
   let stream = nodemon({
     script: 'server.js',
     ignore: 'app/build/**'

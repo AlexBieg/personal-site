@@ -2,7 +2,10 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var getProjects = require('./api/getProjects.js');
+var getChartData = require('./api/getChartData.js');
 var sendEmail = require('./api/sendEmail.js');
+
+console.log(process.env.MAIL_GUN_DOMAIN);
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname+"/app"));
@@ -21,6 +24,11 @@ app.get('/', function(req, res) {
 app.get('/api/GetProjects', function(req, res) {
     var projectsJson = getProjects();
     res.json(projectsJson);
+});
+
+app.get('/api/GetChartData', function(req, res) {
+    var chartDataJson = getChartData();
+    res.json(chartDataJson);
 });
 
 app.post('/api/SendEmail', function(req, res) {

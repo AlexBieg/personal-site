@@ -1,20 +1,15 @@
 $ = JQuery = require('jquery');
 const validation = require("jquery-validation");
-require('jquery-match-height');
-const ChartHandler = require('./chart-handler.js');
 
-// Json Requires
-const chartData = require('../data/chart-data.json');
-
-//========================
-// Constants
-//========================
-const apiBaseUrl = location.protocol + '//' + location.host + '/api/';
+// Services
+const HttpService = require('./services/http-service.js')
+const ChartHandler = require('./services/chart-handler.js');
+const ProjectsHandler = require('./services/projects-handler.js');
 
 $(document).ready(function () {
     //set up
     buildCharts();
-    displayProjects();
+    buildProjects();
     setHandlers();
     validateForms();
 });
@@ -70,13 +65,13 @@ function setHandlers() {
 
         $(".preloader-wrapper").show();
 
-        $.post(apiBaseUrl + "SendEmail", data, function (resp) {
+        HttpService.sendEmail(data).then(function (resp) {
             $(".preloader-wrapper").hide();
             $("#email-form")[0].reset();
             $(".submit-email").prop("disabled", "disabled");
             $(".email-success").text("Your email was sent!")
             $(".email-error").text("")
-        }).fail(function (err) {
+        }).catch(function (err) {
             $(".preloader-wrapper").hide();
             $(".email-error").text("Something went wrong. Please try again later.")
             $(".email-success").text("");
@@ -103,53 +98,24 @@ function checkButton() {
  * Builds all of the charts
  */
 function buildCharts() {
-    let chart = new ChartHandler($(".skill-chart"), chartData.data[0]);
+    HttpService.getChartData().then(function (resp) {
+        showCharts(resp.data);
+    });
+}
+
+function showCharts(chartData) {
+    let chart = new ChartHandler($(".lang-chart"), chartData.lang);
     chart.buildChart();
-    let chart2 = new ChartHandler($(".tech-chart"), chartData.data[1]);
+    let chart2 = new ChartHandler($(".tech-chart"), chartData.tech);
     chart2.buildChart();
 }
 
 /**
  * Gets the projects from the api
  */
-function displayProjects() {
-    $.getJSON(apiBaseUrl + "GetProjects", function (resp) {
-        showProjects(resp.projects);
+function buildProjects() {
+    HttpService.getProjects().then(function (resp) {
+        let ph = new ProjectsHandler($(".projects"), resp.projects);
+        ph.showProjects();
     });
-}
-
-/**
- * Adds the projects to the page
- * @param {Array} projects 
- */
-function showProjects(projects) {
-    let projectsDiv = $(".projects");
-    for (let i = 0; i < projects.length; i++) {
-        let link = $('<a>');
-        link.attr('href', projects[i].link);
-
-        let newProject = $("<div>");
-        newProject.addClass("project hvr-bounce-to-bottom");
-
-        let title = $('<h4>');
-        title.text(projects[i].title);
-        link.append(title);
-
-        let desc = $('<p>');
-        desc.text(projects[i].desc);
-        link.append(desc);
-
-        link.append($('<hr />'));
-
-        let ul = $('<ul>');
-        for (let j = 0; j < projects[i].technologies.length; j++) {
-            ul.append($('<li>').text(projects[i].technologies[j]));
-        }
-
-        link.append(ul);
-
-        newProject.append(link);
-
-        projectsDiv.append(newProject);
-    }
 }
