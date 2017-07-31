@@ -7,6 +7,7 @@ const HttpService = require('./services/http-service.js')
 const ChartHandler = require('./services/chart-handler.js');
 const ProjectsHandler = require('./services/projects-handler.js');
 const EmailHandler = require('./services/email-handler.js');
+const ValidationHandler = require('./services/validation-handler.js');
 
 $(document).ready(function () {
     //set up
@@ -20,36 +21,9 @@ $(document).ready(function () {
  * Set up form validation
  */
 function validateForms() {
-    $("#email-form").validate({
-        rules: {
-            first_name: {
-                required: true
-            },
-            last_name: {
-                required: true
-            },
-            email: {
-                required: true,
-                email: true
-            },
-            subject: {
-                required: true
-            },
-            body: {
-                required: true,
-                minlength: 10
-            }
-        },
-        errorElement: 'div',
-        errorPlacement: function (error, element) {
-            let placement = $(element).data('error');
-            if (placement) {
-                $(placement).append(error)
-            } else {
-                error.insertAfter(element);
-            }
-        }
-    });
+    let form = $('#email-form');
+    let valHandler = new ValidationHandler(form);   
+    valHandler.setValidation();
 }
 
 /**
@@ -105,6 +79,10 @@ function buildCharts() {
     });
 }
 
+/**
+ * Shows the two charts
+ * @param {Object} chartData 
+ */
 function showCharts(chartData) {
     let chart = new ChartHandler($(".lang-chart"), chartData.lang);
     chart.buildChart();
@@ -121,7 +99,7 @@ function buildProjects() {
         ph.showProjects();
     });
 }
-},{"./services/chart-handler.js":2,"./services/email-handler.js":3,"./services/http-service.js":4,"./services/projects-handler.js":5,"jquery":55,"jquery-validation":54}],2:[function(require,module,exports){
+},{"./services/chart-handler.js":2,"./services/email-handler.js":3,"./services/http-service.js":4,"./services/projects-handler.js":5,"./services/validation-handler.js":6,"jquery":56,"jquery-validation":55}],2:[function(require,module,exports){
 var Chart = require('chart.js');
 
 
@@ -159,7 +137,7 @@ ChartHandler.prototype.buildChart = function() {
 
 module.exports = ChartHandler;
 
-},{"chart.js":6}],3:[function(require,module,exports){
+},{"chart.js":7}],3:[function(require,module,exports){
 function EmailHandler() {}
 
 EmailHandler.prototype.sendingEmail = function () {
@@ -242,6 +220,45 @@ ProjectsHandler.prototype.showProjects = function() {
 
 module.exports = ProjectsHandler;
 },{}],6:[function(require,module,exports){
+function ValidationHandler(form) {
+    this.form = form;
+}
+
+ValidationHandler.prototype.setValidation = function () {
+    this.form.validate({
+        rules: {
+            first_name: {
+                required: true
+            },
+            last_name: {
+                required: true
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            subject: {
+                required: true
+            },
+            body: {
+                required: true,
+                minlength: 10
+            }
+        },
+        errorElement: 'div',
+        errorPlacement: function (error, element) {
+            let placement = $(element).data('error');
+            if (placement) {
+                $(placement).append(error)
+            } else {
+                error.insertAfter(element);
+            }
+        }
+    });
+}
+
+module.exports = ValidationHandler;
+},{}],7:[function(require,module,exports){
 /**
  * @namespace Chart
  */
@@ -307,7 +324,7 @@ if (typeof window !== 'undefined') {
 	window.Chart = Chart;
 }
 
-},{"./charts/Chart.Bar":7,"./charts/Chart.Bubble":8,"./charts/Chart.Doughnut":9,"./charts/Chart.Line":10,"./charts/Chart.PolarArea":11,"./charts/Chart.Radar":12,"./charts/Chart.Scatter":13,"./controllers/controller.bar":14,"./controllers/controller.bubble":15,"./controllers/controller.doughnut":16,"./controllers/controller.line":17,"./controllers/controller.polarArea":18,"./controllers/controller.radar":19,"./core/core.animation":20,"./core/core.canvasHelpers":21,"./core/core.controller":22,"./core/core.datasetController":23,"./core/core.element":24,"./core/core.helpers":25,"./core/core.interaction":26,"./core/core.js":27,"./core/core.layoutService":28,"./core/core.plugin.js":29,"./core/core.scale":30,"./core/core.scaleService":31,"./core/core.ticks.js":32,"./core/core.tooltip":33,"./elements/element.arc":34,"./elements/element.line":35,"./elements/element.point":36,"./elements/element.rectangle":37,"./platforms/platform.js":39,"./plugins/plugin.filler.js":40,"./plugins/plugin.legend.js":41,"./plugins/plugin.title.js":42,"./scales/scale.category":43,"./scales/scale.linear":44,"./scales/scale.linearbase.js":45,"./scales/scale.logarithmic":46,"./scales/scale.radialLinear":47,"./scales/scale.time":48}],7:[function(require,module,exports){
+},{"./charts/Chart.Bar":8,"./charts/Chart.Bubble":9,"./charts/Chart.Doughnut":10,"./charts/Chart.Line":11,"./charts/Chart.PolarArea":12,"./charts/Chart.Radar":13,"./charts/Chart.Scatter":14,"./controllers/controller.bar":15,"./controllers/controller.bubble":16,"./controllers/controller.doughnut":17,"./controllers/controller.line":18,"./controllers/controller.polarArea":19,"./controllers/controller.radar":20,"./core/core.animation":21,"./core/core.canvasHelpers":22,"./core/core.controller":23,"./core/core.datasetController":24,"./core/core.element":25,"./core/core.helpers":26,"./core/core.interaction":27,"./core/core.js":28,"./core/core.layoutService":29,"./core/core.plugin.js":30,"./core/core.scale":31,"./core/core.scaleService":32,"./core/core.ticks.js":33,"./core/core.tooltip":34,"./elements/element.arc":35,"./elements/element.line":36,"./elements/element.point":37,"./elements/element.rectangle":38,"./platforms/platform.js":40,"./plugins/plugin.filler.js":41,"./plugins/plugin.legend.js":42,"./plugins/plugin.title.js":43,"./scales/scale.category":44,"./scales/scale.linear":45,"./scales/scale.linearbase.js":46,"./scales/scale.logarithmic":47,"./scales/scale.radialLinear":48,"./scales/scale.time":49}],8:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -320,7 +337,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -332,7 +349,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -345,7 +362,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -358,7 +375,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -371,7 +388,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -384,7 +401,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -433,7 +450,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -818,7 +835,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -942,7 +959,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -1247,7 +1264,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -1582,7 +1599,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -1807,7 +1824,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -1976,7 +1993,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 /* global window: false */
 'use strict';
 
@@ -2146,7 +2163,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -2298,7 +2315,7 @@ module.exports = function(Chart) {
 	Chart.helpers.canvas = helpers;
 };
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -3151,7 +3168,7 @@ module.exports = function(Chart) {
 	Chart.Controller = Chart;
 };
 
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -3483,7 +3500,7 @@ module.exports = function(Chart) {
 	Chart.DatasetController.extend = helpers.inherits;
 };
 
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 
 var color = require('chartjs-color');
@@ -3604,7 +3621,7 @@ module.exports = function(Chart) {
 	Chart.Element.extend = helpers.inherits;
 };
 
-},{"chartjs-color":50}],25:[function(require,module,exports){
+},{"chartjs-color":51}],26:[function(require,module,exports){
 /* global window: false */
 /* global document: false */
 'use strict';
@@ -4590,7 +4607,7 @@ module.exports = function(Chart) {
 	helpers.callCallback = helpers.callback;
 };
 
-},{"chartjs-color":50}],26:[function(require,module,exports){
+},{"chartjs-color":51}],27:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -4908,7 +4925,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 'use strict';
 
 module.exports = function() {
@@ -4966,7 +4983,7 @@ module.exports = function() {
 	return Chart;
 };
 
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -5404,7 +5421,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -5777,7 +5794,7 @@ module.exports = function(Chart) {
 	Chart.PluginBase = Chart.Element.extend({});
 };
 
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -6536,7 +6553,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -6582,7 +6599,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],32:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -6792,7 +6809,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -7732,7 +7749,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -7838,7 +7855,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],35:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -7927,7 +7944,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -8029,7 +8046,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -8239,7 +8256,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],38:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 'use strict';
 
 // Chart.Platform implementation for targeting a web browser
@@ -8524,7 +8541,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],39:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 'use strict';
 
 // By default, select the browser (DOM) platform.
@@ -8595,7 +8612,7 @@ module.exports = function(Chart) {
 	Chart.helpers.extend(Chart.platform, implementation(Chart));
 };
 
-},{"./platform.dom.js":38}],40:[function(require,module,exports){
+},{"./platform.dom.js":39}],41:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -8906,7 +8923,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],41:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -9452,7 +9469,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -9680,7 +9697,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],43:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -9814,7 +9831,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],44:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -10006,7 +10023,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],45:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -10114,7 +10131,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -10362,7 +10379,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -10887,7 +10904,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],48:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 /* global window: false */
 'use strict';
 
@@ -11331,7 +11348,7 @@ module.exports = function(Chart) {
 
 };
 
-},{"moment":56}],49:[function(require,module,exports){
+},{"moment":57}],50:[function(require,module,exports){
 /* MIT license */
 var colorNames = require('color-name');
 
@@ -11554,7 +11571,7 @@ for (var name in colorNames) {
    reverseNames[colorNames[name]] = name;
 }
 
-},{"color-name":53}],50:[function(require,module,exports){
+},{"color-name":54}],51:[function(require,module,exports){
 /* MIT license */
 var convert = require('color-convert');
 var string = require('chartjs-color-string');
@@ -12041,7 +12058,7 @@ if (typeof window !== 'undefined') {
 
 module.exports = Color;
 
-},{"chartjs-color-string":49,"color-convert":52}],51:[function(require,module,exports){
+},{"chartjs-color-string":50,"color-convert":53}],52:[function(require,module,exports){
 /* MIT license */
 
 module.exports = {
@@ -12741,7 +12758,7 @@ for (var key in cssKeywords) {
   reverseKeywords[JSON.stringify(cssKeywords[key])] = key;
 }
 
-},{}],52:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 var conversions = require("./conversions");
 
 var convert = function() {
@@ -12834,7 +12851,7 @@ Converter.prototype.getValues = function(space) {
 });
 
 module.exports = convert;
-},{"./conversions":51}],53:[function(require,module,exports){
+},{"./conversions":52}],54:[function(require,module,exports){
 'use strict'
 
 module.exports = {
@@ -12988,7 +13005,7 @@ module.exports = {
 	"yellowgreen": [154, 205, 50]
 };
 
-},{}],54:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 /*!
  * jQuery Validation Plugin v1.16.0
  *
@@ -14563,7 +14580,7 @@ if ( $.ajaxPrefilter ) {
 }
 return $;
 }));
-},{"jquery":55}],55:[function(require,module,exports){
+},{"jquery":56}],56:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.2.1
  * https://jquery.com/
@@ -24818,7 +24835,7 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{}],56:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 //! moment.js
 //! version : 2.18.1
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors

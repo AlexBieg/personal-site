@@ -6,6 +6,7 @@ const HttpService = require('./services/http-service.js')
 const ChartHandler = require('./services/chart-handler.js');
 const ProjectsHandler = require('./services/projects-handler.js');
 const EmailHandler = require('./services/email-handler.js');
+const ValidationHandler = require('./services/validation-handler.js');
 
 $(document).ready(function () {
     //set up
@@ -19,36 +20,9 @@ $(document).ready(function () {
  * Set up form validation
  */
 function validateForms() {
-    $("#email-form").validate({
-        rules: {
-            first_name: {
-                required: true
-            },
-            last_name: {
-                required: true
-            },
-            email: {
-                required: true,
-                email: true
-            },
-            subject: {
-                required: true
-            },
-            body: {
-                required: true,
-                minlength: 10
-            }
-        },
-        errorElement: 'div',
-        errorPlacement: function (error, element) {
-            let placement = $(element).data('error');
-            if (placement) {
-                $(placement).append(error)
-            } else {
-                error.insertAfter(element);
-            }
-        }
-    });
+    let form = $('#email-form');
+    let valHandler = new ValidationHandler(form);   
+    valHandler.setValidation();
 }
 
 /**
@@ -104,6 +78,10 @@ function buildCharts() {
     });
 }
 
+/**
+ * Shows the two charts
+ * @param {Object} chartData 
+ */
 function showCharts(chartData) {
     let chart = new ChartHandler($(".lang-chart"), chartData.lang);
     chart.buildChart();
