@@ -14,9 +14,9 @@
             }]
         },
         "tech": {
-            "labels": ["  Azure", "  AWS", "  Android", "  SQL Server", "  NodeJS",  "  ASP.NET"],
+            "labels": ["  Azure", "  AWS", "  Android", "  SQL Server", "  NodeJS",  "  ASP.NET", "  React", "  Angluar"],
             "datasets": [{
-                "data": [70, 80, 90, 95, 85, 70],
+                "data": [70, 80, 90, 95, 85, 70, 95, 80],
                 "backgroundColor": [
                     "rgba(74, 131, 246, 0.2)"
                 ],
